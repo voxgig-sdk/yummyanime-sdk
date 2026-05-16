@@ -1,0 +1,22 @@
+# BasicAnimeFlow
+
+main: kit: flow: BasicAnimeFlow:
+{
+  entity: "anime",
+  kind: "basic",
+  name: "BasicAnimeFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "anime_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAnimeFlow"
+}

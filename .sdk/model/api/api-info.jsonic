@@ -1,0 +1,23 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://github.com/l0v3m0n3y/yummyanime"
+      }
+      description: "The YummyAnime API is a JavaScript library designed for accessing and interacting with the yummyani.me platform. It allows developers to search for anime content and retrieve detailed information about various anime titles."
+      servers: [
+        {
+          description: "YummyAnime Platform"
+          url: "https://yummyani.me"
+        }
+      ]
+      title: "YummyAnime API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

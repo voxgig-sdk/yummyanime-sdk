@@ -1,0 +1,37 @@
+{
+  "existing": {
+    "anime": {
+      "ANIME00": {
+        "description": "s32",
+        "id": "ANIME00",
+        "thumbnail": "s34",
+        "title": "s35",
+        "url": "s36"
+      },
+      "ANIME01": {
+        "description": "s64",
+        "id": "ANIME01",
+        "thumbnail": "s66",
+        "title": "s67",
+        "url": "s68"
+      },
+      "ANIME02": {
+        "description": "s96",
+        "id": "ANIME02",
+        "thumbnail": "s98",
+        "title": "s99",
+        "url": "s9a"
+      }
+    }
+  },
+  "new": {
+    "anime": {
+      "anime_ref01": {
+        "description": "sc8",
+        "thumbnail": "sca",
+        "title": "scb",
+        "url": "scc"
+      }
+    }
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "YummyAnime API",
+    "description": "The YummyAnime API is a JavaScript library designed for accessing and interacting with the yummyani.me platform. It allows developers to search for anime content and retrieve detailed information about various anime titles.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://github.com/l0v3m0n3y/yummyanime"
+    }
+  },
+  "externalDocs": {
+    "description": "GitHub Repository",
+    "url": "https://github.com/l0v3m0n3y/yummyanime"
+  },
+  "servers": [
+    {
+      "url": "https://yummyani.me",
+      "description": "YummyAnime Platform"
+    }
+  ],
+  "paths": {
+    "/search": {
+      "get": {
+        "summary": "Search for anime content",
+        "description": "Search for anime titles on the yummyani.me platform by providing a search query term",
+        "operationId": "searchAnime",
+        "tags": [
+          "Anime"
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Search query term to find anime titles",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "blue"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful search response containing anime results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Unique identifier for the anime"
+                          },
+                          "title": {
+                            "type": "string",
+                            "description": "Title of the anime"
+                          },
+                          "description": {
+                            "type": "string",
+                            "description": "Description or synopsis of the anime"
+                          },
+                          "thumbnail": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "URL to the anime thumbnail image"
+                          },
+                          "url": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "URL to the anime details page"
+                          }
+                        }
+                      }
+                    },
+                    "total": {
+                      "type": "integer",
+                      "description": "Total number of search results"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid search query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error message describing what went wrong"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error message describing the server issue"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AnimeResult": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the anime"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of the anime"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description or synopsis of the anime"
+          },
+          "thumbnail": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the anime thumbnail image"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the anime details page"
+          }
+        }
+      },
+      "SearchResponse": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnimeResult"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "description": "Total number of search results"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Anime",
+      "description": "Operations related to anime content search and retrieval"
+    }
+  ]
+}
