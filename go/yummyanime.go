@@ -1,10 +1,10 @@
 package voxgigyummyanimesdk
 
 import (
-	"github.com/voxgig-sdk/yummyanime-sdk/core"
-	"github.com/voxgig-sdk/yummyanime-sdk/entity"
-	"github.com/voxgig-sdk/yummyanime-sdk/feature"
-	_ "github.com/voxgig-sdk/yummyanime-sdk/utility"
+	"github.com/voxgig-sdk/yummyanime-sdk/go/core"
+	"github.com/voxgig-sdk/yummyanime-sdk/go/entity"
+	"github.com/voxgig-sdk/yummyanime-sdk/go/feature"
+	_ "github.com/voxgig-sdk/yummyanime-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

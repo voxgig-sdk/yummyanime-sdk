@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/yummyanime-sdk/core"
+	"github.com/voxgig-sdk/yummyanime-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/yummyanime-sdk/go/utility/struct"
 )
 
 type AnimeEntity struct {

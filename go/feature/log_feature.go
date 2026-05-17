@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/yummyanime-sdk/core"
+	"github.com/voxgig-sdk/yummyanime-sdk/go/core"
 )
 
 type LogFeature struct {

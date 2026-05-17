@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/yummyanime-sdk"
-	"github.com/voxgig-sdk/yummyanime-sdk/core"
+	sdk "github.com/voxgig-sdk/yummyanime-sdk/go"
+	"github.com/voxgig-sdk/yummyanime-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/yummyanime-sdk/go/utility/struct"
 )
 
 func TestAnimeEntity(t *testing.T) {

@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/yummyanime-sdk"
-	"github.com/voxgig-sdk/yummyanime-sdk/core"
+	sdk "github.com/voxgig-sdk/yummyanime-sdk/go"
+	"github.com/voxgig-sdk/yummyanime-sdk/go/core"
 )
 
 func TestAnimeDirect(t *testing.T) {

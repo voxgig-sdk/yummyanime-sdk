@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/yummyanime-sdk/core"
+import "github.com/voxgig-sdk/yummyanime-sdk/go/core"
 
 func init() {
 	core.UtilityRegistrar = registerAll

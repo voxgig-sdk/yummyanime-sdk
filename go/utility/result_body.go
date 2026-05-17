@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/yummyanime-sdk/core"
+import "github.com/voxgig-sdk/yummyanime-sdk/go/core"
 
 func resultBodyUtil(ctx *core.Context) *core.Result {
 	response := ctx.Response
