@@ -86,7 +86,6 @@ function anime_basic_setup($extra)
         "YUMMYANIME_TEST_ANIME_ENTID" => $idmap,
         "YUMMYANIME_TEST_LIVE" => "FALSE",
         "YUMMYANIME_TEST_EXPLAIN" => "FALSE",
-        "YUMMYANIME_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +97,6 @@ function anime_basic_setup($extra)
     if ($env["YUMMYANIME_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["YUMMYANIME_APIKEY"],
             ],
             $extra ?? [],
         ]);

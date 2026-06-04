@@ -68,14 +68,12 @@ function anime_direct_setup($mockres)
     $env = Runner::env_override([
         "YUMMYANIME_TEST_ANIME_ENTID" => [],
         "YUMMYANIME_TEST_LIVE" => "FALSE",
-        "YUMMYANIME_APIKEY" => "NONE",
     ]);
 
     $live = $env["YUMMYANIME_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["YUMMYANIME_APIKEY"],
         ];
         $client = new YummyanimeSDK($merged_opts);
         return [

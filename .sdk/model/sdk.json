@@ -16,7 +16,15 @@
           }
         ],
         "title": "YummyAnime API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "tagline": "Search and fetch anime title details from the YummyAnime (Ями Аниме) Russian-language anime catalogue",
+        "homepage": "https://yummyani.me",
+        "docs_url": "https://freepublicapis.com/yummyanime-api",
+        "about_md": "[YummyAnime](https://yummyani.me) (Ями Аниме) is a Russian-language anime streaming and catalogue site offering a free library of titles, current-season listings, episode release schedules, reviews, and community features. This SDK wraps its public search/title API exposed at `https://api.yani.tv`.\n\nWhat you get from the API:\n\n- Full-text search across the YummyAnime catalogue (e.g. `GET /search?q=tokyo`)\n- Details for individual anime titles\n- Access to the same catalogue data that powers the yummyani.me front-end\n\nOperational notes: CORS is reported as enabled and no authentication is documented for the public search endpoint. The community catalogue lists an average response time around 298 ms with roughly 93% reliability over a rolling 30-day window. Refer to the site's [Terms of Service](https://yummyani.me/terms-of-service) and [Privacy Policy](https://yummyani.me/privacy-policy) for usage conditions.",
+        "entity_desc": {
+          "anime": "An anime title entry from the YummyAnime catalogue, searchable via `GET /search?q=...` on `https://api.yani.tv`."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -24,7 +32,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "anime": {

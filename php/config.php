@@ -20,9 +20,6 @@ class YummyanimeConfig
             ],
             "options" => [
                 "base" => "https://yummyani.me",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
