@@ -10,7 +10,7 @@ The Python SDK for the Yummyanime API — an entity-oriented client following Py
 
 ## Install
 ```bash
-pip install yummyanime-sdk
+pip install voxgig-sdk-yummyanime
 ```
 
 Or install from source:

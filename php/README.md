@@ -10,7 +10,7 @@ The PHP SDK for the Yummyanime API — an entity-oriented client using PHP conve
 
 ## Install
 ```bash
-composer require voxgig/yummyanime-sdk
+composer require voxgig-sdk/yummyanime
 ```
 
 

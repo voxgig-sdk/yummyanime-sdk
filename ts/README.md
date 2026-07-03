@@ -10,7 +10,7 @@ The TypeScript SDK for the Yummyanime API — a type-safe, entity-oriented clien
 
 ## Install
 ```bash
-npm install yummyanime
+npm install @voxgig-sdk/yummyanime
 ```
 ## Tutorial: your first API call
 

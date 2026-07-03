@@ -10,7 +10,7 @@ The Lua SDK for the Yummyanime API — an entity-oriented client using Lua conve
 
 ## Install
 ```bash
-luarocks install yummyanime-sdk
+luarocks install voxgig-sdk-yummyanime
 ```
 
 If the module is not yet published, add the source directory to

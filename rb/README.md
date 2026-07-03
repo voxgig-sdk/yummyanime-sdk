@@ -10,13 +10,13 @@ The Ruby SDK for the Yummyanime API — an entity-oriented client using idiomati
 
 ## Install
 ```bash
-gem install yummyanime-sdk
+gem install voxgig-sdk-yummyanime
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "yummyanime-sdk"
+gem "voxgig-sdk-yummyanime"
 ```
 
 Then run:
