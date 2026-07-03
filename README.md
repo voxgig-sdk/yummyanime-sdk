@@ -1,20 +1,8 @@
 # Yummyanime SDK
 
-Search and fetch anime title details from the YummyAnime (Ями Аниме) Russian-language anime catalogue
+YummyAnime API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About YummyAnime API
-
-[YummyAnime](https://yummyani.me) (Ями Аниме) is a Russian-language anime streaming and catalogue site offering a free library of titles, current-season listings, episode release schedules, reviews, and community features. This SDK wraps its public search/title API exposed at `https://api.yani.tv`.
-
-What you get from the API:
-
-- Full-text search across the YummyAnime catalogue (e.g. `GET /search?q=tokyo`)
-- Details for individual anime titles
-- Access to the same catalogue data that powers the yummyani.me front-end
-
-Operational notes: CORS is reported as enabled and no authentication is documented for the public search endpoint. The community catalogue lists an average response time around 298 ms with roughly 93% reliability over a rolling 30-day window. Refer to the site's [Terms of Service](https://yummyani.me/terms-of-service) and [Privacy Policy](https://yummyani.me/privacy-policy) for usage conditions.
 
 ## Try it
 
@@ -48,29 +36,31 @@ gem install yummyanime-sdk
 luarocks install yummyanime-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { YummyanimeSDK } from 'yummyanime'
 
-const client = new YummyanimeSDK({})
+const client = new YummyanimeSDK({
+  apikey: process.env.YUMMYANIME_APIKEY,
+})
 
 // List all animes
 const animes = await client.Anime().list()
+console.log(animes.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -100,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Anime** | An anime title entry from the YummyAnime catalogue, searchable via `GET /search?q=...` on `https://api.yani.tv`. | `/search` |
+| **Anime** |  | `/search` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -110,12 +100,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from yummyanime_sdk import YummyanimeSDK
 
-client = YummyanimeSDK({})
+client = YummyanimeSDK({
+    "apikey": os.environ.get("YUMMYANIME_APIKEY"),
+})
 
 # List all animes
-animes, err = client.Anime(None).list(None, None)
+animes, err = client.Anime().list()
+print(animes)
 ```
 
 ### PHP
@@ -124,10 +118,13 @@ animes, err = client.Anime(None).list(None, None)
 <?php
 require_once 'yummyanime_sdk.php';
 
-$client = new YummyanimeSDK([]);
+$client = new YummyanimeSDK([
+    "apikey" => getenv("YUMMYANIME_APIKEY"),
+]);
 
 // List all animes
-[$animes, $err] = $client->Anime(null)->list(null, null);
+[$animes, $err] = $client->Anime()->list();
+print_r($animes);
 ```
 
 ### Golang
@@ -135,10 +132,13 @@ $client = new YummyanimeSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/yummyanime-sdk/go"
 
-client := sdk.NewYummyanimeSDK(map[string]any{})
+client := sdk.NewYummyanimeSDK(map[string]any{
+    "apikey": os.Getenv("YUMMYANIME_APIKEY"),
+})
 
 // List all animes
 animes, err := client.Anime(nil).List(nil, nil)
+fmt.Println(animes)
 ```
 
 ### Ruby
@@ -146,10 +146,13 @@ animes, err := client.Anime(nil).List(nil, nil)
 ```ruby
 require_relative "Yummyanime_sdk"
 
-client = YummyanimeSDK.new({})
+client = YummyanimeSDK.new({
+  "apikey" => ENV["YUMMYANIME_APIKEY"],
+})
 
 # List all animes
-animes, err = client.Anime(nil).list(nil, nil)
+animes, err = client.Anime().list
+puts animes
 ```
 
 ### Lua
@@ -157,10 +160,13 @@ animes, err = client.Anime(nil).list(nil, nil)
 ```lua
 local sdk = require("yummyanime_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("YUMMYANIME_APIKEY"),
+})
 
 -- List all animes
-local animes, err = client:Anime(nil):list(nil, nil)
+local animes, err = client:Anime():list()
+print(animes)
 ```
 
 ## Unit testing in offline mode
@@ -179,25 +185,21 @@ const result = await client.Anime().load({ id: 'test01' })
 ### Python
 
 ```python
-client = YummyanimeSDK.test(None, None)
-result, err = client.Anime(None).load(
-    {"id": "test01"}, None
-)
+client = YummyanimeSDK.test()
+result, err = client.Anime().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = YummyanimeSDK::test(null, null);
-[$result, $err] = $client->Anime(null)->load(
-    ["id" => "test01"], null
-);
+$client = YummyanimeSDK::test();
+[$result, $err] = $client->Anime()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Anime(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -206,19 +208,15 @@ result, err := client.Anime(nil).Load(
 ### Ruby
 
 ```ruby
-client = YummyanimeSDK.test(nil, nil)
-result, err = client.Anime(nil).load(
-  { "id" => "test01" }, nil
-)
+client = YummyanimeSDK.test
+result, err = client.Anime().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Anime(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Anime():load({ id = "test01" })
 ```
 
 ## How it works
@@ -322,11 +320,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the YummyAnime API
-
-- Upstream: [https://yummyani.me](https://yummyani.me)
-- API docs: [https://freepublicapis.com/yummyanime-api](https://freepublicapis.com/yummyanime-api)
 
 ---
 

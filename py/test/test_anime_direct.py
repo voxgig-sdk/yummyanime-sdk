@@ -61,12 +61,14 @@ def _anime_direct_setup(mockres):
     env = runner.env_override({
         "YUMMYANIME_TEST_ANIME_ENTID": {},
         "YUMMYANIME_TEST_LIVE": "FALSE",
+        "YUMMYANIME_APIKEY": "NONE",
     })
 
     live = env.get("YUMMYANIME_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("YUMMYANIME_APIKEY"),
         }
         client = YummyanimeSDK(merged_opts)
         return {

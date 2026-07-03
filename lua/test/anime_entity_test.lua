@@ -92,6 +92,7 @@ function anime_basic_setup(extra)
     ["YUMMYANIME_TEST_ANIME_ENTID"] = idmap,
     ["YUMMYANIME_TEST_LIVE"] = "FALSE",
     ["YUMMYANIME_TEST_EXPLAIN"] = "FALSE",
+    ["YUMMYANIME_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -103,6 +104,7 @@ function anime_basic_setup(extra)
   if env["YUMMYANIME_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["YUMMYANIME_APIKEY"],
       },
       extra or {},
     })

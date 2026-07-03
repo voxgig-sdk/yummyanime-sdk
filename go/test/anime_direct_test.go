@@ -93,12 +93,14 @@ func animeDirectSetup(mockres any) *animeDirectSetupResult {
 	env := envOverride(map[string]any{
 		"YUMMYANIME_TEST_ANIME_ENTID": map[string]any{},
 		"YUMMYANIME_TEST_LIVE":    "FALSE",
+		"YUMMYANIME_APIKEY":       "NONE",
 	})
 
 	live := env["YUMMYANIME_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["YUMMYANIME_APIKEY"],
 		}
 		client := sdk.NewYummyanimeSDK(mergedOpts)
 

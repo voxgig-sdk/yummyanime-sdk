@@ -1,6 +1,11 @@
 # Yummyanime Python SDK
 
-The Python SDK for the Yummyanime API. Provides an entity-oriented interface following Pythonic conventions.
+
+
+The Python SDK for the Yummyanime API — an entity-oriented client following Pythonic conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -23,15 +28,18 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
+import os
 from yummyanime_sdk import YummyanimeSDK
 
-client = YummyanimeSDK({})
+client = YummyanimeSDK({
+    "apikey": os.environ.get("YUMMYANIME_APIKEY"),
+})
 ```
 
 ### 2. List animes
 
 ```python
-result, err = client.Anime(None).list(None, None)
+result, err = client.Anime().list()
 if err:
     raise Exception(err)
 
@@ -83,11 +91,9 @@ print(fetchdef["headers"])
 Create a mock client for unit testing — no server required:
 
 ```python
-client = YummyanimeSDK.test(None, None)
+client = YummyanimeSDK.test()
 
-result, err = client.Yummyanime(None).load(
-    {"id": "test01"}, None
-)
+result, err = client.Yummyanime().load({"id": "test01"})
 # result contains mock response data
 ```
 
@@ -118,6 +124,7 @@ Create a `.env.local` file at the project root:
 
 ```
 YUMMYANIME_TEST_LIVE=TRUE
+YUMMYANIME_APIKEY=<your-key>
 ```
 
 Then run:
@@ -141,6 +148,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |

@@ -119,6 +119,7 @@ func animeBasicSetup(extra map[string]any) *entityTestSetup {
 		"YUMMYANIME_TEST_ANIME_ENTID": idmap,
 		"YUMMYANIME_TEST_LIVE":      "FALSE",
 		"YUMMYANIME_TEST_EXPLAIN":   "FALSE",
+		"YUMMYANIME_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["YUMMYANIME_TEST_ANIME_ENTID"])
@@ -129,6 +130,7 @@ func animeBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["YUMMYANIME_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["YUMMYANIME_APIKEY"],
 			},
 			extra,
 		})
