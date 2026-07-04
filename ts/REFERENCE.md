@@ -109,7 +109,7 @@ Alias for `YummyanimeSDK.test()`.
 ## AnimeEntity
 
 ```ts
-const anime = client.anime
+const anime = client.Anime()
 ```
 
 ### Fields
@@ -129,7 +129,7 @@ const anime = client.anime
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.anime.list()
+const results = await client.Anime().list()
 ```
 
 ### Common Methods

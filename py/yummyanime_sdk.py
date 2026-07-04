@@ -220,25 +220,15 @@ class YummyanimeSDK:
         }
 
 
-    @property
-    def anime(self):
-        """Idiomatic facade: client.anime.list() / client.anime.load({"id": ...})."""
-        from entity.anime_entity import AnimeEntity
-        cached = getattr(self, "_anime", None)
-        if cached is None:
-            cached = AnimeEntity(self, None)
-            self._anime = cached
-        return cached
-
-    def Anime(self, data=None):
-        # Deprecated: use client.anime instead.
+    def Anime(self, data=None) -> "AnimeEntity":
+        """Entity factory: client.Anime().list({}) / client.Anime().load({"id": ...})."""
         from entity.anime_entity import AnimeEntity
         return AnimeEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "YummyanimeSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class YummyanimeSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.anime_entity import AnimeEntity

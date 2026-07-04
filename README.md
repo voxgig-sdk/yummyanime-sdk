@@ -26,9 +26,11 @@ import { YummyanimeSDK } from '@voxgig-sdk/yummyanime'
 
 const client = new YummyanimeSDK()
 
-// List all animes
-const animes = await client.anime.list()
-console.log(animes.data)
+// List all animes (returns Anime[])
+const animes = await client.Anime().list()
+for (const anime of animes) {
+  console.log(anime)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -83,9 +85,10 @@ from yummyanime_sdk import YummyanimeSDK
 
 client = YummyanimeSDK()
 
-# List all animes
-animes = client.anime.list()
-print(animes)
+# List all animes (returns a list, raises on error)
+animes = client.Anime().list({})
+for anime in animes:
+    print(anime)
 ```
 
 ### PHP
@@ -96,8 +99,8 @@ require_once 'yummyanime_sdk.php';
 
 $client = new YummyanimeSDK();
 
-// List all animes (throws on error)
-$animes = $client->anime()->list();
+// List all animes (returns an array; throws on error)
+$animes = $client->Anime()->list();
 print_r($animes);
 ```
 
@@ -120,8 +123,8 @@ require_relative "Yummyanime_sdk"
 
 client = YummyanimeSDK.new
 
-# List all animes
-animes = client.anime.list
+# List all animes (returns an Array; raises on error)
+animes = client.Anime.list
 puts animes
 ```
 
@@ -133,7 +136,7 @@ local sdk = require("yummyanime_sdk")
 local client = sdk.new()
 
 -- List all animes
-local animes, err = client:anime():list()
+local animes, err = client:Anime():list()
 print(animes)
 ```
 
@@ -146,22 +149,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = YummyanimeSDK.test()
-const result = await client.anime.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const anime = await client.Anime().load({ id: 'test01' })
+// anime is a bare Anime populated with mock data
+console.log(anime)
 ```
 
 ### Python
 
 ```python
 client = YummyanimeSDK.test()
-result = client.anime.load({"id": "test01"})
+anime = client.Anime().load({"id": "test01"})
+print(anime)
 ```
 
 ### PHP
 
 ```php
-$client = YummyanimeSDK::test();
-$result = $client->anime()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = YummyanimeSDK::test([
+    "entity" => ["anime" => ["test01" => ["id" => "test01"]]],
+]);
+$anime = $client->Anime()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -176,15 +184,18 @@ result, err := client.Anime(nil).Load(
 ### Ruby
 
 ```ruby
-client = YummyanimeSDK.test
-result = client.anime.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = YummyanimeSDK.test({
+  "entity" => { "anime" => { "test01" => { "id" => "test01" } } },
+})
+anime = client.Anime.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:anime():load({ id = "test01" })
+local result, err = client:Anime():load({ id = "test01" })
 ```
 
 ## How it works
@@ -232,6 +243,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

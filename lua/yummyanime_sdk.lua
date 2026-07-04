@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:anime():list() / client:anime():load({ id = ... })
-function YummyanimeSDK:anime(data)
+-- Idiomatic facade: client:Anime():list() / client:Anime():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function YummyanimeSDK:Anime(data)
   local EntityMod = require("entity.anime_entity")
   if data == nil then
     if self._anime == nil then
@@ -253,12 +254,6 @@ function YummyanimeSDK:anime(data)
     end
     return self._anime
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:anime() instead.
-function YummyanimeSDK:Anime(data)
-  local EntityMod = require("entity.anime_entity")
   return EntityMod.new(self, data)
 end
 

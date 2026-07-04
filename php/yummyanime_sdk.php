@@ -233,10 +233,10 @@ class YummyanimeSDK
 
     private $_anime = null;
 
-    // Idiomatic facade: $client->anime()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Anime() (PHP method
-    // names are case-insensitive).
-    public function anime($data = null)
+    // Canonical facade: $client->Anime()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->anime()
+    // resolves here too.
+    public function Anime($data = null)
     {
         require_once __DIR__ . '/entity/anime_entity.php';
         if ($data === null) {

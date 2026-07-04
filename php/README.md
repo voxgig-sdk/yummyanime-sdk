@@ -29,18 +29,16 @@ require_once 'yummyanime_sdk.php';
 $client = new YummyanimeSDK();
 ```
 
-### 2. List animes
+### 2. List anime records
 
 ```php
 try {
-    $result = $client->anime()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Anime records — iterate directly.
+    $animes = $client->Anime()->list();
+    foreach ($animes as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -86,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = YummyanimeSDK::test();
+$client = YummyanimeSDK::test([
+    "entity" => ["anime" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->anime()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$anime = $client->Anime()->load(["id" => "test01"]);
+print_r($anime);
 ```
 
 ### Use a custom fetch function
@@ -171,7 +173,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `Anime` | `($data): AnimeEntity` | Create a Anime entity instance. |
+| `Anime` | `($data): AnimeEntity` | Create an Anime entity instance. |
 
 ### Entity interface
 
@@ -232,7 +234,7 @@ API path: `/search`
 
 ### Anime
 
-Create an instance: `const anime = client.anime`
+Create an instance: `$anime = $client->Anime();`
 
 #### Operations
 
@@ -252,8 +254,9 @@ Create an instance: `const anime = client.anime`
 
 #### Example: List
 
-```ts
-const animes = await client.anime.list()
+```php
+// list() returns an array of Anime records (throws on error).
+$animes = $client->Anime()->list();
 ```
 
 
@@ -328,7 +331,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$anime = $client->anime();
+$anime = $client->Anime();
 $anime->load(["id" => "example_id"]);
 
 // $anime->dataGet() now returns the loaded anime data

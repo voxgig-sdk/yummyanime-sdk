@@ -86,7 +86,7 @@ same parameters as `direct()`. Raises on error.
 ## AnimeEntity
 
 ```ruby
-anime = client.anime
+anime = client.Anime
 ```
 
 ### Fields
@@ -106,7 +106,7 @@ anime = client.anime
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.anime.list(nil)
+results = client.Anime.list(nil)
 ```
 
 ### Common Methods

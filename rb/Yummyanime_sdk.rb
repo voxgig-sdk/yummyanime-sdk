@@ -208,13 +208,7 @@ class YummyanimeSDK
   end
 
 
-  # Idiomatic facade: client.anime.list / client.anime.load({ "id" => ... })
-  def anime
-    require_relative 'entity/anime_entity'
-    @anime ||= AnimeEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.anime instead.
+  # Canonical facade: client.Anime.list / client.Anime.load({ "id" => ... })
   def Anime(data = nil)
     require_relative 'entity/anime_entity'
     AnimeEntity.new(self, data)

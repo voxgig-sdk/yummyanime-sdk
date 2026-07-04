@@ -83,7 +83,7 @@ same parameters as `direct()`.
 ## AnimeEntity
 
 ```lua
-local anime = client:anime(nil)
+local anime = client:Anime(nil)
 ```
 
 ### Fields
@@ -103,7 +103,7 @@ local anime = client:anime(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:anime():list()
+local results, err = client:Anime():list()
 ```
 
 ### Common Methods

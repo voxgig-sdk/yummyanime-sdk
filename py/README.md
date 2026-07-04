@@ -31,14 +31,16 @@ from yummyanime_sdk import YummyanimeSDK
 client = YummyanimeSDK()
 ```
 
-### 2. List animes
+### 2. List anime records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.anime.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    animes = client.Anime().list({})
+    for anime in animes:
+        print(anime)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -86,8 +88,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = YummyanimeSDK.test()
 
-result = client.anime.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+anime = client.Anime().load({"id": "test01"})
+# anime contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -163,7 +166,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
-| `Anime` | `(data) -> AnimeEntity` | Create a Anime entity instance. |
+| `Anime` | `(data) -> AnimeEntity` | Create an Anime entity instance. |
 
 ### Entity interface
 
@@ -224,7 +227,7 @@ API path: `/search`
 
 ### Anime
 
-Create an instance: `const anime = client.anime`
+Create an instance: `anime = client.Anime()`
 
 #### Operations
 
@@ -244,8 +247,8 @@ Create an instance: `const anime = client.anime`
 
 #### Example: List
 
-```ts
-const animes = await client.anime.list()
+```python
+animes = client.Anime().list({})
 ```
 
 
@@ -319,7 +322,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-anime = client.anime
+anime = client.Anime()
 anime.load({"id": "example_id"})
 
 # anime.data_get() now returns the loaded anime data

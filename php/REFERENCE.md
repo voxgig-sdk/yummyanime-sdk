@@ -85,7 +85,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## AnimeEntity
 
 ```php
-$anime = $client->anime();
+$anime = $client->Anime();
 ```
 
 ### Fields
@@ -105,7 +105,7 @@ $anime = $client->anime();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->anime()->list([]);
+$results = $client->Anime()->list([]);
 ```
 
 ### Common Methods

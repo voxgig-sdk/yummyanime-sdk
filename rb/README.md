@@ -28,16 +28,14 @@ require_relative "Yummyanime_sdk"
 client = YummyanimeSDK.new
 ```
 
-### 2. List animes
+### 2. List anime records
 
 ```ruby
 begin
-  result = client.anime.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Anime records — iterate directly.
+  animes = client.Anime.list
+  animes.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = YummyanimeSDK.test
+client = YummyanimeSDK.test({
+  "entity" => { "anime" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.anime.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+anime = client.Anime.load({ "id" => "test01" })
+puts anime
 ```
 
 ### Use a custom fetch function
@@ -167,7 +169,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `Anime` | `(data) -> AnimeEntity` | Create a Anime entity instance. |
+| `Anime` | `(data) -> AnimeEntity` | Create an Anime entity instance. |
 
 ### Entity interface
 
@@ -227,7 +229,7 @@ API path: `/search`
 
 ### Anime
 
-Create an instance: `const anime = client.anime`
+Create an instance: `anime = client.Anime`
 
 #### Operations
 
@@ -247,8 +249,9 @@ Create an instance: `const anime = client.anime`
 
 #### Example: List
 
-```ts
-const animes = await client.anime.list()
+```ruby
+# list returns an Array of Anime records (raises on error).
+animes = client.Anime.list
 ```
 
 
@@ -323,7 +326,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-anime = client.anime
+anime = client.Anime
 anime.load({ "id" => "example_id" })
 
 # anime.data_get now returns the loaded anime data
