@@ -82,14 +82,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'YUMMYANIME_TEST_ANIME_ENTID': {},
     'YUMMYANIME_TEST_LIVE': 'FALSE',
-    'YUMMYANIME_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.YUMMYANIME_TEST_LIVE
 
   if (live) {
     const client = new YummyanimeSDK({
-      apikey: env.YUMMYANIME_APIKEY,
     })
 
     let idmap: any = env['YUMMYANIME_TEST_ANIME_ENTID']

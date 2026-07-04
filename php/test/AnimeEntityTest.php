@@ -50,8 +50,7 @@ class AnimeEntityTest extends TestCase
         $anime_ref01_ent = $client->Anime(null);
         $anime_ref01_match = [];
 
-        [$anime_ref01_list_result, $err] = $anime_ref01_ent->list($anime_ref01_match, null);
-        $this->assertNull($err);
+        $anime_ref01_list_result = $anime_ref01_ent->list($anime_ref01_match, null);
         $this->assertIsArray($anime_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function anime_basic_setup($extra)
         "YUMMYANIME_TEST_ANIME_ENTID" => $idmap,
         "YUMMYANIME_TEST_LIVE" => "FALSE",
         "YUMMYANIME_TEST_EXPLAIN" => "FALSE",
-        "YUMMYANIME_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function anime_basic_setup($extra)
     if ($env["YUMMYANIME_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["YUMMYANIME_APIKEY"],
             ],
             $extra ?? [],
         ]);

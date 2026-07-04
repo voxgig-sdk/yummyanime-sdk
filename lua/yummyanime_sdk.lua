@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:anime():list() / client:anime():load({ id = ... })
+function YummyanimeSDK:anime(data)
+  local EntityMod = require("entity.anime_entity")
+  if data == nil then
+    if self._anime == nil then
+      self._anime = EntityMod.new(self, nil)
+    end
+    return self._anime
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:anime() instead.
 function YummyanimeSDK:Anime(data)
   local EntityMod = require("entity.anime_entity")
   return EntityMod.new(self, data)

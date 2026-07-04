@@ -55,6 +55,9 @@ class AnimeEntity
         return new AnimeEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Anime|array $args Anime data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class AnimeEntity
         }
     }
 
+    /**
+     * @return Anime|array The current Anime data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Anime fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class AnimeEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Anime fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -86,7 +98,16 @@ class AnimeEntity
     
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List Anime items matching the given filter.
+     *
+     * @param AnimeListMatch|array|null $reqmatch Match filter (any subset
+     *   of Anime fields) as an assoc-array; AnimeListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Anime[]|array A list of Anime items as assoc-arrays at
+     *   the SDK boundary; throws YummyanimeError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -114,7 +135,7 @@ class AnimeEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

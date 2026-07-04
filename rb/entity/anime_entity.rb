@@ -45,6 +45,7 @@ class AnimeEntity
     end
   end
 
+  # @return [Anime, Hash] the current Anime data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class AnimeEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Anime fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class AnimeEntity
   
 
   
+  # List Anime items matching the given filter.
+  #
+  # @param reqmatch [AnimeListMatch, Hash, nil] match filter (any subset of Anime fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Anime>, Array] the matching Anime items; raises YummyanimeError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

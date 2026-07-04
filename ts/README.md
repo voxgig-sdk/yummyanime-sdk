@@ -9,9 +9,12 @@ The TypeScript SDK for the Yummyanime API — a type-safe, entity-oriented clien
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/yummyanime
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/yummyanime-sdk/releases](https://github.com/voxgig-sdk/yummyanime-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { YummyanimeSDK } from 'yummyanime'
+import { YummyanimeSDK } from '@voxgig-sdk/yummyanime'
 
-const client = new YummyanimeSDK({
-  apikey: process.env.YUMMYANIME_APIKEY,
-})
+const client = new YummyanimeSDK()
 ```
 
 ### 2. List animes
 
 ```ts
-const result = await client.Anime().list()
+const result = await client.anime.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -81,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = YummyanimeSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.anime.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -89,7 +90,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new YummyanimeSDK({ apikey: '...' })
+const client = new YummyanimeSDK()
 const testClient = client.tester()
 ```
 
@@ -98,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.anime
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -125,7 +126,6 @@ const logger = {
 }
 
 const client = new YummyanimeSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -136,7 +136,6 @@ Create a `.env.local` file at the project root:
 
 ```
 YUMMYANIME_TEST_LIVE=TRUE
-YUMMYANIME_APIKEY=<your-key>
 ```
 
 Then run:
@@ -154,7 +153,6 @@ cd ts && npm test
 
 ```ts
 new YummyanimeSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -165,7 +163,6 @@ new YummyanimeSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -272,7 +269,7 @@ API path: `/search`
 
 ### Anime
 
-Create an instance: `const anime = client.Anime()`
+Create an instance: `const anime = client.anime`
 
 #### Operations
 
@@ -293,7 +290,7 @@ Create an instance: `const anime = client.Anime()`
 #### Example: List
 
 ```ts
-const animes = await client.Anime().list()
+const animes = await client.anime.list()
 ```
 
 
@@ -354,7 +351,7 @@ yummyanime/
 Import the SDK from the package root:
 
 ```ts
-import { YummyanimeSDK } from 'yummyanime'
+import { YummyanimeSDK } from '@voxgig-sdk/yummyanime'
 ```
 
 ### Entity state
@@ -364,11 +361,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const anime = client.anime
+await anime.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// anime.data() now returns the loaded anime data
+// anime.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

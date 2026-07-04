@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -110,7 +109,7 @@ Alias for `YummyanimeSDK.test()`.
 ## AnimeEntity
 
 ```ts
-const anime = client.Anime()
+const anime = client.anime
 ```
 
 ### Fields
@@ -130,7 +129,7 @@ const anime = client.Anime()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Anime().list()
+const results = await client.anime.list()
 ```
 
 ### Common Methods

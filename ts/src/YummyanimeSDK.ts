@@ -2,6 +2,8 @@
 
 import { AnimeEntity } from './entity/AnimeEntity'
 
+export type * from './YummyanimeTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class YummyanimeSDK {
 
 
 
+  _anime?: AnimeEntity
+
+  // Idiomatic facade: `client.anime.list()` / `client.anime.load({ id })`.
+  get anime(): AnimeEntity {
+    return (this._anime ??= new AnimeEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.anime` instead. */
   Anime(data?: any) {
     const self = this
     return new AnimeEntity(self,data)
