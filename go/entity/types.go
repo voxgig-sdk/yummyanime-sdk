@@ -17,8 +17,7 @@ type Anime struct {
 	Url *string `json:"url,omitempty"`
 }
 
-// AnimeListMatch mirrors the anime fields as an all-optional match
-// filter (Go analog of Partial<Anime>).
+// AnimeListMatch is the typed request payload for Anime.ListTyped.
 type AnimeListMatch struct {
 	Description *string `json:"description,omitempty"`
 	Id *string `json:"id,omitempty"`

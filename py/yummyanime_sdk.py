@@ -221,7 +221,7 @@ class YummyanimeSDK:
 
 
     def Anime(self, data=None) -> "AnimeEntity":
-        """Entity factory: client.Anime().list({}) / client.Anime().load({"id": ...})."""
+        """Entity factory: client.Anime().list() / client.Anime().load({"id": ...})."""
         from entity.anime_entity import AnimeEntity
         return AnimeEntity(self, data)
 

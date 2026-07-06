@@ -33,7 +33,7 @@ Anime = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Anime#list (any subset of Anime fields).
+# Request payload for Anime#list.
 #
 # @!attribute [rw] description
 #   @return [String, nil]

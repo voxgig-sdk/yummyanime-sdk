@@ -13,5 +13,11 @@ export interface Anime {
   url?: string
 }
 
-export type AnimeListMatch = Partial<Anime>
+export interface AnimeListMatch {
+  description?: string
+  id?: string
+  thumbnail?: string
+  title?: string
+  url?: string
+}
 

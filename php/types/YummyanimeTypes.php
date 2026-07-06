@@ -22,7 +22,7 @@ class Anime
     public ?string $url = null;
 }
 
-/** Match filter for Anime#list (any subset of Anime fields). */
+/** Request payload for Anime#list. */
 class AnimeListMatch
 {
     public ?string $description = null;

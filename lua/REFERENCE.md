@@ -90,11 +90,11 @@ local anime = client:Anime(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `thumbnail` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `description` | `string` | No |  |
+| `id` | `string` | No |  |
+| `thumbnail` | `string` | No |  |
+| `title` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 

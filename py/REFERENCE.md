@@ -87,20 +87,20 @@ anime = client.Anime()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `thumbnail` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `description` | `str` | No |  |
+| `id` | `str` | No |  |
+| `thumbnail` | `str` | No |  |
+| `title` | `str` | No |  |
+| `url` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Anime().list({})
+results = client.Anime().list()
 for anime in results:
     print(anime)
 ```
