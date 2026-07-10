@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -234,14 +231,17 @@
           "url": "https://github.com/l0v3m0n3y/yummyanime"
         },
         "description": "The YummyAnime API is a JavaScript library designed for accessing and interacting with the yummyani.me platform. It allows developers to search for anime content and retrieve detailed information about various anime titles.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "YummyAnime Platform",
             "url": "https://yummyani.me"
           }
         ],
+        "summary": "The YummyAnime API is a JavaScript library designed for accessing and interacting with the yummyani.me platform.",
         "title": "YummyAnime API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://github.com/l0v3m0n3y/yummyanime"
       },
       "option": {},
       "target": {
@@ -294,6 +294,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -344,6 +347,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

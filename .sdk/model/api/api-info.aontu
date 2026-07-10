@@ -15,9 +15,9 @@ main: {
           url: "https://yummyani.me"
         }
       ]
+      summary: "The YummyAnime API is a JavaScript library designed for accessing and interacting with the yummyani.me platform."
       title: "YummyAnime API"
       version: "1.0.0"
+      website: "https://github.com/l0v3m0n3y/yummyanime"
     }
   }
-}
-
