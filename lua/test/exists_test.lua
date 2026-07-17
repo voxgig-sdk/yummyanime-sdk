@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Yummyanime SDK exists test
 
 local sdk = require("yummyanime_sdk")
 
