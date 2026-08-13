@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ YummyanimeUtility::setRegistrar(function (YummyanimeUtility $u): void {
     $u->prepare_params = [YummyanimePrepareParams::class, 'call'];
     $u->prepare_path = [YummyanimePreparePath::class, 'call'];
     $u->prepare_query = [YummyanimePrepareQuery::class, 'call'];
+    $u->graphql_body = [YummyanimeGraphql::class, 'body'];
+    $u->graphql_errors = [YummyanimeGraphql::class, 'errors'];
     $u->result_basic = [YummyanimeResultBasic::class, 'call'];
     $u->result_body = [YummyanimeResultBody::class, 'call'];
     $u->result_headers = [YummyanimeResultHeaders::class, 'call'];

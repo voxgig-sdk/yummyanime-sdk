@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import YummyanimeSDK
-from core.error import YummyanimeError
-from core.result import YummyanimeResult
-from core.response import YummyanimeResponse
-from core.spec import YummyanimeSpec
-from feature.base_feature import YummyanimeBaseFeature
+from projectname_sdk.core.error import YummyanimeError
+from projectname_sdk.core.result import YummyanimeResult
+from projectname_sdk.core.response import YummyanimeResponse
+from projectname_sdk.core.spec import YummyanimeSpec
+from projectname_sdk.feature.base_feature import YummyanimeBaseFeature
 
 
 def _client():

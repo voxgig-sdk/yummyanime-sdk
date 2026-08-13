@@ -119,7 +119,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = YummyanimeSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 anime = client.Anime.list()
 puts anime
 ```

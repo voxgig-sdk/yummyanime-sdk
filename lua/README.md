@@ -218,9 +218,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local anime, err = client:Anime():load()
+    local anime, err = client:Anime():list()
     if err then error(err) end
-    -- anime is the loaded record
+    -- anime is the record list
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.

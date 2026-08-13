@@ -67,7 +67,7 @@ main: kit: entity: anime: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.results`"
           }
         }
       ]

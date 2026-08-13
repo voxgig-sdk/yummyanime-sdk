@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Yummyanime SDK exists test
 
 import pytest
 from yummyanime_sdk import YummyanimeSDK

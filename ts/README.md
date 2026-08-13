@@ -35,7 +35,9 @@ const client = new YummyanimeSDK()
 
 ### 2. List anime records
 
-`list()` resolves to an array of Anime objects — iterate it directly:
+`list()` resolves to an array of Anime ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const animes = await client.Anime().list()
@@ -120,7 +122,8 @@ Create a mock client for unit testing — no server required:
 const client = YummyanimeSDK.test()
 
 const anime = await client.Anime().list()
-// anime is a bare entity populated with mock response data
+// anime is the entity, populated with mock response data
+// — call anime.data() for the record itself
 console.log(anime)
 ```
 

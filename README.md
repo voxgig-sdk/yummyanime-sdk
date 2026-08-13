@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = YummyanimeSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = YummyanimeSDK.test({
+  entity: {
+    anime: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const animes = await client.Anime().list()
-// animes is an array of bare Anime records populated with mock data
+// animes is an array of Anime entities, populated with mock data
+// — call animes[0].data() for the record itself
 console.log(animes)
 ```
 
@@ -110,7 +119,7 @@ import { YummyanimeSDK } from '@voxgig-sdk/yummyanime'
 
 const client = new YummyanimeSDK()
 
-// List all animes (returns Anime[])
+// List all animes (returns AnimeEntity[] — .data() for the record)
 const animes = await client.Anime().list()
 for (const anime of animes) {
   console.log(anime)
@@ -343,6 +352,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://github.com/l0v3m0n3y/yummyanime](https://github.com/l0v3m0n3y/yummyanime)
 

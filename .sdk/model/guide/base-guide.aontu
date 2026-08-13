@@ -8,6 +8,7 @@ guide: {
   entity: anime: {
     path: "/search": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.results`")|top
     }
   }
 

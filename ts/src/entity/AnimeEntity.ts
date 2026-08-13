@@ -37,7 +37,7 @@ class AnimeEntity extends YummyanimeEntityBase<Anime> {
 
 
 
-  async list(this: any, reqmatch?: AnimeListMatch, ctrl?: Control): Promise<Anime[]> {
+  async list(this: any, reqmatch?: AnimeListMatch, ctrl?: Control): Promise<AnimeEntity[]> {
 
     const utility = this._utility
 

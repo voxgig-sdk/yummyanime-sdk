@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import YummyanimeControl
-from core.error import YummyanimeError
-from core.result import YummyanimeResult
-from core.spec import YummyanimeSpec
+from yummyanime_sdk.config import make_config
+from yummyanime_sdk.features import _make_feature
+from yummyanime_sdk.core.control import YummyanimeControl
+from yummyanime_sdk.core.error import YummyanimeError
+from yummyanime_sdk.core.result import YummyanimeResult
+from yummyanime_sdk.core.spec import YummyanimeSpec
 
 
 # True when this SDK was generated with the named feature.
