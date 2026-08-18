@@ -28,7 +28,7 @@ class YummyanimeSDK
     utility = YummyanimeUtility.new
     @_utility = utility
 
-    config = YummyanimeConfig.make_config
+    config = YummyanimeConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

@@ -40,7 +40,7 @@ class YummyanimeSDK
         $utility = new YummyanimeUtility();
         $this->_utility = $utility;
 
-        $config = YummyanimeConfig::make_config();
+        $config = YummyanimeConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,
