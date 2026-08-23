@@ -36,30 +36,35 @@
               "active": true,
               "name": "description",
               "req": false,
+              "short": "Description or synopsis of the anime",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique identifier for the anime",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "thumbnail",
               "req": false,
+              "short": "URL to the anime thumbnail image",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "title",
               "req": false,
+              "short": "Title of the anime",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "url",
               "req": false,
+              "short": "URL to the anime details page",
               "type": "`$STRING`"
             }
           ],

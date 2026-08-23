@@ -231,11 +231,11 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `id` |  |
-| `thumbnail` |  |
-| `title` |  |
-| `url` |  |
+| `description` | Description or synopsis of the anime |
+| `id` | Unique identifier for the anime |
+| `thumbnail` | URL to the anime thumbnail image |
+| `title` | Title of the anime |
+| `url` | URL to the anime details page |
 
 Operations: List.
 
@@ -260,11 +260,11 @@ Create an instance: `local anime = client:Anime(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `string` |  |
-| `id` | `string` |  |
-| `thumbnail` | `string` |  |
-| `title` | `string` |  |
-| `url` | `string` |  |
+| `description` | `string` | Description or synopsis of the anime |
+| `id` | `string` | Unique identifier for the anime |
+| `thumbnail` | `string` | URL to the anime thumbnail image |
+| `title` | `string` | Title of the anime |
+| `url` | `string` | URL to the anime details page |
 
 #### Example: List
 

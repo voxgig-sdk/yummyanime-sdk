@@ -243,11 +243,11 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `id` |  |
-| `thumbnail` |  |
-| `title` |  |
-| `url` |  |
+| `description` | Description or synopsis of the anime |
+| `id` | Unique identifier for the anime |
+| `thumbnail` | URL to the anime thumbnail image |
+| `title` | Title of the anime |
+| `url` | URL to the anime details page |
 
 Operations: List.
 
@@ -272,11 +272,11 @@ Create an instance: `anime = client.Anime()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `str` |  |
-| `id` | `str` |  |
-| `thumbnail` | `str` |  |
-| `title` | `str` |  |
-| `url` | `str` |  |
+| `description` | `str` | Description or synopsis of the anime |
+| `id` | `str` | Unique identifier for the anime |
+| `thumbnail` | `str` | URL to the anime thumbnail image |
+| `title` | `str` | Title of the anime |
+| `url` | `str` | URL to the anime details page |
 
 #### Example: List
 

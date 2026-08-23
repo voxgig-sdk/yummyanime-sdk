@@ -8,26 +8,31 @@ main: kit: entity: anime: {
     {
       name: "description"
       req: false
+      short: "Description or synopsis of the anime"
       type: "`$STRING`"
     }
     {
       name: "id"
       req: false
+      short: "Unique identifier for the anime"
       type: "`$STRING`"
     }
     {
       name: "thumbnail"
       req: false
+      short: "URL to the anime thumbnail image"
       type: "`$STRING`"
     }
     {
       name: "title"
       req: false
+      short: "Title of the anime"
       type: "`$STRING`"
     }
     {
       name: "url"
       req: false
+      short: "URL to the anime details page"
       type: "`$STRING`"
     }
   ]

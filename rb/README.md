@@ -237,11 +237,11 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `id` |  |
-| `thumbnail` |  |
-| `title` |  |
-| `url` |  |
+| `description` | Description or synopsis of the anime |
+| `id` | Unique identifier for the anime |
+| `thumbnail` | URL to the anime thumbnail image |
+| `title` | Title of the anime |
+| `url` | URL to the anime details page |
 
 Operations: List.
 
@@ -266,11 +266,11 @@ Create an instance: `anime = client.Anime`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `String` |  |
-| `id` | `String` |  |
-| `thumbnail` | `String` |  |
-| `title` | `String` |  |
-| `url` | `String` |  |
+| `description` | `String` | Description or synopsis of the anime |
+| `id` | `String` | Unique identifier for the anime |
+| `thumbnail` | `String` | URL to the anime thumbnail image |
+| `title` | `String` | Title of the anime |
+| `url` | `String` | URL to the anime details page |
 
 #### Example: List
 

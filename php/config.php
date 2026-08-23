@@ -33,6 +33,9 @@ class YummyanimeConfig
         return [
             "main" => [
                 "name" => "Yummyanime",
+                "slug" => "yummyanime",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -55,22 +58,27 @@ class YummyanimeConfig
           'fields' => [
             [
               'name' => 'description',
+              'short' => 'Description or synopsis of the anime',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'id',
+              'short' => 'Unique identifier for the anime',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'thumbnail',
+              'short' => 'URL to the anime thumbnail image',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'title',
+              'short' => 'Title of the anime',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'url',
+              'short' => 'URL to the anime details page',
               'type' => '`$STRING`',
             ],
           ],

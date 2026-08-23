@@ -87,11 +87,11 @@ anime = client.Anime()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `str` | No |  |
-| `id` | `str` | No |  |
-| `thumbnail` | `str` | No |  |
-| `title` | `str` | No |  |
-| `url` | `str` | No |  |
+| `description` | `str` | No | Description or synopsis of the anime |
+| `id` | `str` | No | Unique identifier for the anime |
+| `thumbnail` | `str` | No | URL to the anime thumbnail image |
+| `title` | `str` | No | Title of the anime |
+| `url` | `str` | No | URL to the anime details page |
 
 ### Operations
 

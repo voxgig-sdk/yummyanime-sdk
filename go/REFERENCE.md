@@ -98,11 +98,11 @@ fmt.Println(anime.GetName()) // "anime"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `string` | No |  |
-| `id` | `string` | No |  |
-| `thumbnail` | `string` | No |  |
-| `title` | `string` | No |  |
-| `url` | `string` | No |  |
+| `description` | `string` | No | Description or synopsis of the anime |
+| `id` | `string` | No | Unique identifier for the anime |
+| `thumbnail` | `string` | No | URL to the anime thumbnail image |
+| `title` | `string` | No | Title of the anime |
+| `url` | `string` | No | URL to the anime details page |
 
 ### Operations
 

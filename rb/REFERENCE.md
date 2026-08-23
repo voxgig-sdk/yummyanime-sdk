@@ -93,11 +93,11 @@ anime = client.Anime
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `String` | No |  |
-| `id` | `String` | No |  |
-| `thumbnail` | `String` | No |  |
-| `title` | `String` | No |  |
-| `url` | `String` | No |  |
+| `description` | `String` | No | Description or synopsis of the anime |
+| `id` | `String` | No | Unique identifier for the anime |
+| `thumbnail` | `String` | No | URL to the anime thumbnail image |
+| `title` | `String` | No | Title of the anime |
+| `url` | `String` | No | URL to the anime details page |
 
 ### Operations
 
