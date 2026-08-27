@@ -28,6 +28,7 @@ module YummyanimeConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
