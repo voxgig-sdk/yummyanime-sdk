@@ -25,10 +25,6 @@ class Anime
 /** Request payload for Anime#list. */
 class AnimeListMatch
 {
-    public ?string $description = null;
-    public ?string $id = null;
-    public ?string $thumbnail = null;
-    public ?string $title = null;
-    public ?string $url = null;
+    public string $query;
 }
 

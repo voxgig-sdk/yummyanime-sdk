@@ -14,10 +14,6 @@ export interface Anime {
 }
 
 export interface AnimeListMatch {
-  description?: string
-  id?: string
-  thumbnail?: string
-  title?: string
-  url?: string
+  query: string
 }
 

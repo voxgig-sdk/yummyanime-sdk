@@ -14,11 +14,7 @@
 ---@field url? string
 
 ---@class AnimeListMatch
----@field description? string
----@field id? string
----@field thumbnail? string
----@field title? string
----@field url? string
+---@field query string
 
 local M = {}
 

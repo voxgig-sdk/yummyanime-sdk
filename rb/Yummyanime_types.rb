@@ -35,26 +35,10 @@ Anime = Struct.new(
 
 # Request payload for Anime#list.
 #
-# @!attribute [rw] description
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] thumbnail
-#   @return [String, nil]
-#
-# @!attribute [rw] title
-#   @return [String, nil]
-#
-# @!attribute [rw] url
-#   @return [String, nil]
+# @!attribute [rw] query
+#   @return [String]
 AnimeListMatch = Struct.new(
-  :description,
-  :id,
-  :thumbnail,
-  :title,
-  :url,
+  :query,
   keyword_init: true
 )
 

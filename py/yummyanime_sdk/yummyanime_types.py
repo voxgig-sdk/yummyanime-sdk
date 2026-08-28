@@ -24,9 +24,5 @@ class Anime(TypedDict, total=False):
     url: str
 
 
-class AnimeListMatch(TypedDict, total=False):
-    description: str
-    id: str
-    thumbnail: str
-    title: str
-    url: str
+class AnimeListMatch(TypedDict):
+    query: str

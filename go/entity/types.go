@@ -23,11 +23,7 @@ type Anime struct {
 
 // AnimeListMatch is the typed request payload for Anime.ListTyped.
 type AnimeListMatch struct {
-	Description *string `json:"description,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Thumbnail *string `json:"thumbnail,omitempty"`
-	Title *string `json:"title,omitempty"`
-	Url *string `json:"url,omitempty"`
+	Query string `json:"query"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the
