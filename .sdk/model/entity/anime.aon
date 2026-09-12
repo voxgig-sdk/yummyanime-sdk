@@ -18,6 +18,7 @@ main: kit: entity: anime: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "thumbnail"
       req: false
       short: "URL to the anime thumbnail image"
@@ -30,6 +31,7 @@ main: kit: entity: anime: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "url"
       req: false
       short: "URL to the anime details page"
@@ -62,8 +64,10 @@ main: kit: entity: anime: {
           }
           method: "GET"
           orig: "/search"
-          parts: [
-            "search"
+          segments: [
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
