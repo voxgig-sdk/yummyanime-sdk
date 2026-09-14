@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { YummyanimeSDK } from '@voxgig-sdk/yummyanime'
+import { YummyanimeSDK } from '@voxgig-sdk/yummyanime-sdk'
 
 const client = new YummyanimeSDK()
 ```
@@ -411,7 +411,7 @@ yummyanime/
 Import the SDK from the package root:
 
 ```ts
-import { YummyanimeSDK } from '@voxgig-sdk/yummyanime'
+import { YummyanimeSDK } from '@voxgig-sdk/yummyanime-sdk'
 ```
 
 ### Entity state

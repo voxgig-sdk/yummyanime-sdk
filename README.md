@@ -105,7 +105,7 @@ local results, err = client:Anime():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/yummyanime` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yummyanime-sdk/releases) |
+| TypeScript | `@voxgig-sdk/yummyanime-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yummyanime-sdk/releases) |
 | Python | `voxgig-sdk-yummyanime` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yummyanime-sdk/releases) |
 | PHP | `voxgig-sdk/yummyanime` | publish pending — [install from git tag](https://github.com/voxgig-sdk/yummyanime-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/yummyanime-sdk/go` | `go get github.com/voxgig-sdk/yummyanime-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Anime():list()
 ### TypeScript
 
 ```ts
-import { YummyanimeSDK } from '@voxgig-sdk/yummyanime'
+import { YummyanimeSDK } from '@voxgig-sdk/yummyanime-sdk'
 
 const client = new YummyanimeSDK()
 
