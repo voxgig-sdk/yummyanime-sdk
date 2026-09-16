@@ -33,5 +33,107 @@
         "url": "scc"
       }
     }
+  },
+  "requests": {
+    "GET /search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "searchAnime",
+        "parameters": [
+          {
+            "description": "Search query term to find anime titles",
+            "in": "query",
+            "name": "query",
+            "required": true,
+            "schema": {
+              "example": "blue",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "results": {
+                      "items": {
+                        "properties": {
+                          "description": {
+                            "description": "Description or synopsis of the anime",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "Unique identifier for the anime",
+                            "type": "string"
+                          },
+                          "thumbnail": {
+                            "description": "URL to the anime thumbnail image",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "title": {
+                            "description": "Title of the anime",
+                            "type": "string"
+                          },
+                          "url": {
+                            "description": "URL to the anime details page",
+                            "format": "uri",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "total": {
+                      "description": "Total number of search results",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful search response containing anime results"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message describing what went wrong",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request - invalid search query"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message describing the server issue",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

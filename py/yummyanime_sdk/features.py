@@ -1,12 +1,18 @@
 # Yummyanime SDK feature factory
 
 from yummyanime_sdk.feature.base_feature import YummyanimeBaseFeature
+from yummyanime_sdk.feature.ratelimit_feature import YummyanimeRatelimitFeature
+from yummyanime_sdk.feature.retry_feature import YummyanimeRetryFeature
 from yummyanime_sdk.feature.test_feature import YummyanimeTestFeature
+from yummyanime_sdk.feature.timeout_feature import YummyanimeTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: YummyanimeBaseFeature(),
+    "ratelimit": lambda: YummyanimeRatelimitFeature(),
+    "retry": lambda: YummyanimeRetryFeature(),
     "test": lambda: YummyanimeTestFeature(),
+    "timeout": lambda: YummyanimeTimeoutFeature(),
 }
 
 
