@@ -19,7 +19,6 @@ import type {
   AnimeListMatch,
 } from '../YummyanimeTypes'
 
-// TODO: needs Entity superclass
 class AnimeEntity extends YummyanimeEntityBase<Anime> {
 
   constructor(client: YummyanimeSDK, entopts: any) {

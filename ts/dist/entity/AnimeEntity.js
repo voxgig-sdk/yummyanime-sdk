@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AnimeEntity = void 0;
 const YummyanimeEntityBase_1 = require("../YummyanimeEntityBase");
-// TODO: needs Entity superclass
 class AnimeEntity extends YummyanimeEntityBase_1.YummyanimeEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

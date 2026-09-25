@@ -43,7 +43,7 @@ local animes, err = client:Anime():list()
 if err then error(err) end
 
 for _, item in ipairs(animes) do
-  print(item["id"], item["description"])
+  print(item["id"])
 end
 ```
 

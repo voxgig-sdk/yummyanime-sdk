@@ -116,30 +116,35 @@ def make_config():
         "fields": [
           {
             "name": "description",
-            "short": "Description or synopsis of the anime",
+            "title": "Description",
             "type": "`$STRING`",
+            "short": "Description or synopsis of the anime",
           },
           {
             "name": "id",
-            "short": "Unique identifier for the anime",
+            "title": "Id",
             "type": "`$STRING`",
+            "short": "Unique identifier for the anime",
           },
           {
-            "format": "uri",
             "name": "thumbnail",
-            "short": "URL to the anime thumbnail image",
+            "title": "Thumbnail",
             "type": "`$STRING`",
+            "short": "URL to the anime thumbnail image",
+            "format": "uri",
           },
           {
             "name": "title",
-            "short": "Title of the anime",
+            "title": "Title",
             "type": "`$STRING`",
+            "short": "Title of the anime",
           },
           {
-            "format": "uri",
             "name": "url",
-            "short": "URL to the anime details page",
+            "title": "Url",
             "type": "`$STRING`",
+            "short": "URL to the anime details page",
+            "format": "uri",
           },
         ],
         "id": {
@@ -153,18 +158,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": "blue",
-                      "kind": "query",
-                      "name": "query",
-                      "orig": "query",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/search",
@@ -173,18 +166,31 @@ def make_config():
                     "lit": "search",
                   },
                 ],
+                "parts": [
+                  "search",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body.results`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "query",
+                      "orig": "query",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": "blue",
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "query",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body.results`",
-                },
-                "parts": [
-                  "search",
-                ],
               },
             ],
           },

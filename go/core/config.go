@@ -91,30 +91,35 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "description",
-						"short": "Description or synopsis of the anime",
+						"title": "Description",
 						"type": "`$STRING`",
+						"short": "Description or synopsis of the anime",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique identifier for the anime",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique identifier for the anime",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "thumbnail",
-						"short": "URL to the anime thumbnail image",
+						"title": "Thumbnail",
 						"type": "`$STRING`",
+						"short": "URL to the anime thumbnail image",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "Title of the anime",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "Title of the anime",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "url",
-						"short": "URL to the anime details page",
+						"title": "Url",
 						"type": "`$STRING`",
+						"short": "URL to the anime details page",
+						"format": "uri",
 					},
 				},
 				"id": map[string]any{
@@ -128,18 +133,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": "blue",
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/search",
@@ -148,17 +141,30 @@ func MakeConfig() map[string]any {
 										"lit": "search",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"query",
-									},
+								"parts": []any{
+									"search",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.results`",
 								},
-								"parts": []any{
-									"search",
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+											"example": "blue",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"query",
+									},
 								},
 							},
 						},
