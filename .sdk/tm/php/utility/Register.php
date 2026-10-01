@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 YummyanimeUtility::setRegistrar(function (YummyanimeUtility $u): void {
     $u->clean = [YummyanimeClean::class, 'call'];
+    $u->clean_add = [YummyanimeClean::class, 'add'];
+    $u->clean_explain = [YummyanimeDone::class, 'clean_explain'];
     $u->done = [YummyanimeDone::class, 'call'];
     $u->make_error = [YummyanimeMakeError::class, 'call'];
     $u->feature_add = [YummyanimeFeatureAdd::class, 'call'];

@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 YummyanimeUtility.registrar = ->(u) {
   u.clean = YummyanimeUtilities::Clean
+  u.clean_add = YummyanimeUtilities::CleanAdd
+  u.clean_explain = YummyanimeUtilities::CleanExplain
   u.done = YummyanimeUtilities::Done
   u.make_error = YummyanimeUtilities::MakeError
   u.feature_add = YummyanimeUtilities::FeatureAdd
