@@ -3,5 +3,12 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Successful search response containing anime results",
+      "The YummyAnime API is a JavaScript library designed for accessing and interacting with the yummyani.me platform. It allows developers to search for anime content and retrieve detailed information about various anime titles. 2026-11-03: the API is https://api.yani.tv (yummyani.me/search answers the site 404); search takes q (query answers 400) and answers &#123;response: [&#123;`anime_id`, title, ...&#125;]&#125;; schema from a live probe.",
+      "YummyAnime API"
+    ]
+  }
 }

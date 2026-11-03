@@ -10,35 +10,79 @@
 
 # Anime entity data model.
 #
+# @!attribute [rw] anime_id
+#   @return [Integer, nil]
+#
+# @!attribute [rw] anime_status
+#   @return [Hash, nil]
+#
+# @!attribute [rw] anime_url
+#   @return [String, nil]
+#
+# @!attribute [rw] blocked_in
+#   @return [Array, nil]
+#
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] id
-#   @return [String, nil]
+# @!attribute [rw] min_age
+#   @return [Hash, nil]
 #
-# @!attribute [rw] thumbnail
-#   @return [String, nil]
+# @!attribute [rw] poster
+#   @return [Hash, nil]
+#
+# @!attribute [rw] rating
+#   @return [Hash, nil]
+#
+# @!attribute [rw] remote_ids
+#   @return [Hash, nil]
+#
+# @!attribute [rw] season
+#   @return [Float, nil]
 #
 # @!attribute [rw] title
 #   @return [String, nil]
 #
-# @!attribute [rw] url
-#   @return [String, nil]
+# @!attribute [rw] top
+#   @return [Hash, nil]
+#
+# @!attribute [rw] type
+#   @return [Hash, nil]
+#
+# @!attribute [rw] views
+#   @return [Float, nil]
+#
+# @!attribute [rw] year
+#   @return [Float, nil]
 Anime = Struct.new(
+  :anime_id,
+  :anime_status,
+  :anime_url,
+  :blocked_in,
   :description,
-  :id,
-  :thumbnail,
+  :min_age,
+  :poster,
+  :rating,
+  :remote_ids,
+  :season,
   :title,
-  :url,
+  :top,
+  :type,
+  :views,
+  :year,
   keyword_init: true
 )
 
 # Request payload for Anime#list.
 #
-# @!attribute [rw] query
+# @!attribute [rw] limit
+#   @return [Integer, nil]
+#
+# @!attribute [rw] q
 #   @return [String]
 AnimeListMatch = Struct.new(
-  :query,
+  :limit,
+  :q,
   keyword_init: true
 )
 

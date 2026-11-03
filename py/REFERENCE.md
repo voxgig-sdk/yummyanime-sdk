@@ -87,22 +87,32 @@ anime = client.Anime()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `str` | No | Description or synopsis of the anime |
-| `id` | `str` | No | Unique identifier for the anime |
-| `thumbnail` | `str` | No | URL to the anime thumbnail image |
-| `title` | `str` | No | Title of the anime |
-| `url` | `str` | No | URL to the anime details page |
+| `anime_id` | `int` | No |  |
+| `anime_status` | `dict` | No |  |
+| `anime_url` | `str` | No |  |
+| `blocked_in` | `list` | No |  |
+| `description` | `str` | No |  |
+| `min_age` | `dict` | No |  |
+| `poster` | `dict` | No |  |
+| `rating` | `dict` | No |  |
+| `remote_ids` | `dict` | No |  |
+| `season` | `float` | No |  |
+| `title` | `str` | No |  |
+| `top` | `dict` | No |  |
+| `type` | `dict` | No |  |
+| `views` | `float` | No |  |
+| `year` | `float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[AnimeEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
-results = client.Anime().list({"query": "example"})
+results = client.Anime().list({"q": "example"})
 for anime in results:
-    print(anime)
+    print(anime.data_get())
 ```
 
 ### Common Methods
@@ -291,6 +301,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

@@ -15,16 +15,27 @@ declare(strict_types=1);
 /** Anime entity data model. */
 class Anime
 {
+    public ?int $anime_id = null;
+    public ?array $anime_status = null;
+    public ?string $anime_url = null;
+    public ?array $blocked_in = null;
     public ?string $description = null;
-    public ?string $id = null;
-    public ?string $thumbnail = null;
+    public ?array $min_age = null;
+    public ?array $poster = null;
+    public ?array $rating = null;
+    public ?array $remote_ids = null;
+    public ?float $season = null;
     public ?string $title = null;
-    public ?string $url = null;
+    public ?array $top = null;
+    public ?array $type = null;
+    public ?float $views = null;
+    public ?float $year = null;
 }
 
 /** Request payload for Anime#list. */
 class AnimeListMatch
 {
-    public string $query;
+    public ?int $limit = null;
+    public string $q;
 }
 

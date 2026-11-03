@@ -8,11 +8,11 @@ main: {
       contact: {
         url: "https://github.com/l0v3m0n3y/yummyanime"
       }
-      description: "The YummyAnime API is a JavaScript library designed for accessing and interacting with the yummyani.me platform. It allows developers to search for anime content and retrieve detailed information about various anime titles."
+      description: "The YummyAnime API is a JavaScript library designed for accessing and interacting with the yummyani.me platform. It allows developers to search for anime content and retrieve detailed information about various anime titles. 2026-11-03: the API is https://api.yani.tv (yummyani.me/search answers the site 404); search takes q (query answers 400) and answers {response: [{anime_id, title, ...}]}; schema from a live probe."
       servers: [
         {
-          description: "YummyAnime Platform"
-          url: "https://yummyani.me"
+          description: "YummyAnime API"
+          url: "https://api.yani.tv"
         }
       ]
       summary: "The YummyAnime API is a JavaScript library designed for accessing and interacting with the yummyani.me platform."

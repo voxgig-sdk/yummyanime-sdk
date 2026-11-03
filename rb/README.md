@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/yummyanime-sdk/releases)), or
+GitHub release tag (`rb/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/yummyanime-sdk/tags)), or
 from a clone:
 
 ```bash
@@ -43,10 +43,11 @@ client = YummyanimeSDK.new
 
 ```ruby
 begin
-  # list returns an Array of Anime records — iterate directly.
-  animes = client.Anime.list
+  # list returns an Array of Anime entities, one per record; data_get reads the record.
+  animes = client.Anime.list({ "q" => "example" })
   animes.each do |item|
-    puts "#{item["id"]} #{item["description"]}"
+    record = item.data_get
+    puts "#{record["anime_id"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -60,7 +61,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  animes = client.Anime.list()
+  animes = client.Anime.list({ "q" => "example" })
 rescue => err
   warn "list failed: #{err}"
 end
@@ -128,10 +129,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = YummyanimeSDK.test
 
-# Entity ops return the ENTITY (raises on error);
-# call data_get for the mock record.
-anime = client.Anime.list()
-puts anime
+# list returns an Array of Anime entities, one per mock record (raises on
+# error); data_get reads each record.
+animes = client.Anime.list({ "q" => "example" })
+animes.each { |item| puts item.data_get }
 ```
 
 ### Use a custom fetch function
@@ -215,7 +216,7 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all), one per record. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -225,9 +226,10 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the result data directly. On failure they
-raise a `YummyanimeError` (a `StandardError` subclass), so wrap
-calls in `begin`/`rescue` where you need to handle errors.
+Entity operations return the entity, and `list` an `Array` of entities, one
+per record; an entity's `data_get` reads its record. On failure they raise a
+`YummyanimeError` (a `StandardError` subclass), so wrap calls in
+`begin`/`rescue` where you need to handle errors.
 
 The `direct` escape hatch is the exception: it never raises and instead
 returns a result `Hash` with these keys:
@@ -246,11 +248,21 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `description` | Description or synopsis of the anime |
-| `id` | Unique identifier for the anime |
-| `thumbnail` | URL to the anime thumbnail image |
-| `title` | Title of the anime |
-| `url` | URL to the anime details page |
+| `anime_id` |  |
+| `anime_status` |  |
+| `anime_url` |  |
+| `blocked_in` |  |
+| `description` |  |
+| `min_age` |  |
+| `poster` |  |
+| `rating` |  |
+| `remote_ids` |  |
+| `season` |  |
+| `title` |  |
+| `top` |  |
+| `type` |  |
+| `views` |  |
+| `year` |  |
 
 Operations: List.
 
@@ -275,17 +287,28 @@ Create an instance: `anime = client.Anime`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `String` | Description or synopsis of the anime |
-| `id` | `String` | Unique identifier for the anime |
-| `thumbnail` | `String` | URL to the anime thumbnail image |
-| `title` | `String` | Title of the anime |
-| `url` | `String` | URL to the anime details page |
+| `anime_id` | `Integer` |  |
+| `anime_status` | `Hash` |  |
+| `anime_url` | `String` |  |
+| `blocked_in` | `Array` |  |
+| `description` | `String` |  |
+| `min_age` | `Hash` |  |
+| `poster` | `Hash` |  |
+| `rating` | `Hash` |  |
+| `remote_ids` | `Hash` |  |
+| `season` | `Float` |  |
+| `title` | `String` |  |
+| `top` | `Hash` |  |
+| `type` | `Hash` |  |
+| `views` | `Float` |  |
+| `year` | `Float` |  |
 
 #### Example: List
 
 ```ruby
-# list returns an Array of Anime records (raises on error).
-animes = client.Anime.list
+# list returns an Array of Anime entities, one per record (raises on error).
+animes = client.Anime.list({ "q" => "example" })
+animes.each { |item| puts item.data_get }
 ```
 
 ## Features
@@ -451,7 +474,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 anime = client.Anime
-anime.list()
+anime.list({ "q" => "example" })
 
 # anime.data_get now returns the anime data from the last list
 # anime.match_get returns the last match criteria

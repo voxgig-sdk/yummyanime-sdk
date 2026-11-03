@@ -2,7 +2,7 @@
   "openapi": "3.0.3",
   "info": {
     "title": "YummyAnime API",
-    "description": "The YummyAnime API is a JavaScript library designed for accessing and interacting with the yummyani.me platform. It allows developers to search for anime content and retrieve detailed information about various anime titles.",
+    "description": "The YummyAnime API is a JavaScript library designed for accessing and interacting with the yummyani.me platform. It allows developers to search for anime content and retrieve detailed information about various anime titles. 2026-11-03: the API is https://api.yani.tv (yummyani.me/search answers the site 404); search takes q (query answers 400) and answers {response: [{anime_id, title, ...}]}; schema from a live probe.",
     "version": "1.0.0",
     "contact": {
       "url": "https://github.com/l0v3m0n3y/yummyanime"
@@ -14,8 +14,8 @@
   },
   "servers": [
     {
-      "url": "https://yummyani.me",
-      "description": "YummyAnime Platform"
+      "url": "https://api.yani.tv",
+      "description": "YummyAnime API"
     }
   ],
   "paths": {
@@ -29,13 +29,21 @@
         ],
         "parameters": [
           {
-            "name": "query",
+            "name": "q",
             "in": "query",
-            "description": "Search query term to find anime titles",
             "required": true,
+            "description": "Search text",
             "schema": {
-              "type": "string",
-              "example": "blue"
+              "type": "string"
+            },
+            "example": "blue"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
             }
           }
         ],
@@ -47,39 +55,59 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "results": {
+                    "response": {
                       "type": "array",
                       "items": {
                         "type": "object",
                         "properties": {
-                          "id": {
-                            "type": "string",
-                            "description": "Unique identifier for the anime"
+                          "description": {
+                            "type": "string"
+                          },
+                          "poster": {
+                            "type": "object"
                           },
                           "title": {
-                            "type": "string",
-                            "description": "Title of the anime"
+                            "type": "string"
                           },
-                          "description": {
-                            "type": "string",
-                            "description": "Description or synopsis of the anime"
+                          "anime_url": {
+                            "type": "string"
                           },
-                          "thumbnail": {
-                            "type": "string",
-                            "format": "uri",
-                            "description": "URL to the anime thumbnail image"
+                          "anime_id": {
+                            "type": "integer"
                           },
-                          "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "description": "URL to the anime details page"
+                          "rating": {
+                            "type": "object"
+                          },
+                          "year": {
+                            "type": "number"
+                          },
+                          "min_age": {
+                            "type": "object"
+                          },
+                          "views": {
+                            "type": "number"
+                          },
+                          "season": {
+                            "type": "number"
+                          },
+                          "anime_status": {
+                            "type": "object"
+                          },
+                          "type": {
+                            "type": "object"
+                          },
+                          "remote_ids": {
+                            "type": "object"
+                          },
+                          "top": {
+                            "type": "object"
+                          },
+                          "blocked_in": {
+                            "type": "array",
+                            "items": {}
                           }
                         }
                       }
-                    },
-                    "total": {
-                      "type": "integer",
-                      "description": "Total number of search results"
                     }
                   }
                 }

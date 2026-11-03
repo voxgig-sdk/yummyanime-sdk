@@ -57,6 +57,7 @@ declare class Config {
             };
             optspec: {
                 clearTimer: string;
+                now: string;
                 setTimer: string;
             };
             strict: boolean;
@@ -74,23 +75,11 @@ declare class Config {
     };
     entity: {
         anime: {
-            fields: ({
+            fields: {
                 name: string;
                 title: string;
                 type: string;
-                short: string;
-                format?: undefined;
-            } | {
-                name: string;
-                title: string;
-                type: string;
-                short: string;
-                format: string;
-            })[];
-            id: {
-                field: string;
-                name: string;
-            };
+            }[];
             name: string;
             op: {
                 list: {
@@ -110,17 +99,28 @@ declare class Config {
                             res: string;
                         };
                         args: {
-                            query: {
+                            query: ({
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                reqd?: undefined;
+                                example?: undefined;
+                            } | {
                                 name: string;
                                 orig: string;
                                 type: string;
                                 kind: string;
                                 reqd: boolean;
                                 example: string;
-                            }[];
+                            })[];
                         };
                         select: {
                             exist: string[];
+                        };
+                        response: {
+                            kind: string;
+                            media: string;
                         };
                     }[];
                 };

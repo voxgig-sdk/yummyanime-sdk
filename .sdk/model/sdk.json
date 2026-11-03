@@ -97,52 +97,111 @@
             "field": {}
           },
           "fields": {
+            "anime_id": {
+              "a": true,
+              "h": "Anime Id",
+              "n": "anime_id",
+              "r": false,
+              "t": "`$INTEGER`"
+            },
+            "anime_status": {
+              "a": true,
+              "h": "Anime Status",
+              "n": "anime_status",
+              "r": false,
+              "t": "`$OBJECT`"
+            },
+            "anime_url": {
+              "a": true,
+              "h": "Anime Url",
+              "n": "anime_url",
+              "r": false,
+              "t": "`$STRING`"
+            },
+            "blocked_in": {
+              "a": true,
+              "h": "Blocked In",
+              "n": "blocked_in",
+              "r": false,
+              "t": "`$ARRAY`"
+            },
             "description": {
               "a": true,
               "h": "Description",
               "n": "description",
               "r": false,
-              "sh": "Description or synopsis of the anime",
               "t": "`$STRING`"
             },
-            "id": {
+            "min_age": {
               "a": true,
-              "h": "Id",
-              "n": "id",
+              "h": "Min Age",
+              "n": "min_age",
               "r": false,
-              "sh": "Unique identifier for the anime",
-              "t": "`$STRING`"
+              "t": "`$OBJECT`"
             },
-            "thumbnail": {
+            "poster": {
               "a": true,
-              "fo": "uri",
-              "h": "Thumbnail",
-              "n": "thumbnail",
+              "h": "Poster",
+              "n": "poster",
               "r": false,
-              "sh": "URL to the anime thumbnail image",
-              "t": "`$STRING`"
+              "t": "`$OBJECT`"
+            },
+            "rating": {
+              "a": true,
+              "h": "Rating",
+              "n": "rating",
+              "r": false,
+              "t": "`$OBJECT`"
+            },
+            "remote_ids": {
+              "a": true,
+              "h": "Remote Ids",
+              "n": "remote_ids",
+              "r": false,
+              "t": "`$OBJECT`"
+            },
+            "season": {
+              "a": true,
+              "h": "Season",
+              "n": "season",
+              "r": false,
+              "t": "`$NUMBER`"
             },
             "title": {
               "a": true,
               "h": "Title",
               "n": "title",
               "r": false,
-              "sh": "Title of the anime",
               "t": "`$STRING`"
             },
-            "url": {
+            "top": {
               "a": true,
-              "fo": "uri",
-              "h": "Url",
-              "n": "url",
+              "h": "Top",
+              "n": "top",
               "r": false,
-              "sh": "URL to the anime details page",
-              "t": "`$STRING`"
+              "t": "`$OBJECT`"
+            },
+            "type": {
+              "a": true,
+              "h": "Type",
+              "n": "type",
+              "r": false,
+              "t": "`$OBJECT`"
+            },
+            "views": {
+              "a": true,
+              "h": "Views",
+              "n": "views",
+              "r": false,
+              "t": "`$NUMBER`"
+            },
+            "year": {
+              "a": true,
+              "h": "Year",
+              "n": "year",
+              "r": false,
+              "t": "`$NUMBER`"
             }
-          },
-          "id": {
-            "field": "id",
-            "name": "id"
           },
           "name": "anime",
           "op": {
@@ -161,10 +220,18 @@
                     "query": [
                       {
                         "a": true,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
                         "ex": "blue",
                         "k": "query",
-                        "n": "query",
-                        "or": "query",
+                        "n": "q",
+                        "or": "q",
                         "r": true,
                         "t": "`$STRING`"
                       }
@@ -175,10 +242,14 @@
                   "o": "/search",
                   "q": {
                     "exist": [
-                      "query"
+                      "q"
                     ]
                   },
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "search"
@@ -186,7 +257,7 @@
                   ],
                   "t": {
                     "req": "`reqdata`",
-                    "res": "`body.results`"
+                    "res": "`body.response`"
                   }
                 }
               ]
@@ -519,6 +590,7 @@
             },
             "optspec": {
               "clearTimer": "`$FUNCTION`",
+              "now": "`$FUNCTION`",
               "setTimer": "`$FUNCTION`"
             },
             "strict": false
@@ -640,12 +712,12 @@
         "contact": {
           "url": "https://github.com/l0v3m0n3y/yummyanime"
         },
-        "description": "The YummyAnime API is a JavaScript library designed for accessing and interacting with the yummyani.me platform. It allows developers to search for anime content and retrieve detailed information about various anime titles.",
+        "description": "The YummyAnime API is a JavaScript library designed for accessing and interacting with the yummyani.me platform. It allows developers to search for anime content and retrieve detailed information about various anime titles. 2026-11-03: the API is https://api.yani.tv (yummyani.me/search answers the site 404); search takes q (query answers 400) and answers {response: [{anime_id, title, ...}]}; schema from a live probe.",
         "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
-            "description": "YummyAnime Platform",
-            "url": "https://yummyani.me"
+            "description": "YummyAnime API",
+            "url": "https://api.yani.tv"
           }
         ],
         "summary": "The YummyAnime API is a JavaScript library designed for accessing and interacting with the yummyani.me platform.",
@@ -657,7 +729,7 @@
       "optspec": {
         "allow": {
           "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
-          "op": "create,update,load,list,remove,command,direct,graphql"
+          "op": "create,update,patch,load,list,remove,command,direct,graphql"
         },
         "apikey": "",
         "auth": {
@@ -710,6 +782,11 @@
         "top": {
           "active": true
         }
+      },
+      "publisher": {
+        "name": "",
+        "security": "",
+        "url": ""
       },
       "repo": {
         "host": "github.com",
@@ -940,7 +1017,10 @@
             "version": "0.0.1"
           },
           "superseded": [],
-          "title": "Go MCP server"
+          "title": "Go MCP server",
+          "tool": {
+            "write": false
+          }
         },
         "lua": {
           "active": true,
@@ -1317,6 +1397,17 @@
           "base": "",
           "strict": true
         }
+      },
+      "text": {
+        "about_md": "",
+        "docs_url": "",
+        "entity_desc": {},
+        "homepage": "",
+        "meta_source": "",
+        "summary": "",
+        "tagline": "",
+        "title": "",
+        "website": ""
       }
     }
   },

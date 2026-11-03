@@ -79,6 +79,7 @@ module YummyanimeConfig
           },
           "optspec" => {
             "clearTimer" => "`$FUNCTION`",
+            "now" => "`$FUNCTION`",
             "setTimer" => "`$FUNCTION`",
           },
           "strict" => false,
@@ -86,7 +87,7 @@ module YummyanimeConfig
         },
       },
       "options" => {
-        "base" => "https://yummyani.me",
+        "base" => "https://api.yani.tv",
         "headers" => {
           "content-type" => "application/json",
         },
@@ -98,42 +99,81 @@ module YummyanimeConfig
         "anime" => {
           "fields" => [
             {
+              "name" => "anime_id",
+              "title" => "Anime Id",
+              "type" => "`$INTEGER`",
+            },
+            {
+              "name" => "anime_status",
+              "title" => "Anime Status",
+              "type" => "`$OBJECT`",
+            },
+            {
+              "name" => "anime_url",
+              "title" => "Anime Url",
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "blocked_in",
+              "title" => "Blocked In",
+              "type" => "`$ARRAY`",
+            },
+            {
               "name" => "description",
               "title" => "Description",
               "type" => "`$STRING`",
-              "short" => "Description or synopsis of the anime",
             },
             {
-              "name" => "id",
-              "title" => "Id",
-              "type" => "`$STRING`",
-              "short" => "Unique identifier for the anime",
+              "name" => "min_age",
+              "title" => "Min Age",
+              "type" => "`$OBJECT`",
             },
             {
-              "name" => "thumbnail",
-              "title" => "Thumbnail",
-              "type" => "`$STRING`",
-              "short" => "URL to the anime thumbnail image",
-              "format" => "uri",
+              "name" => "poster",
+              "title" => "Poster",
+              "type" => "`$OBJECT`",
+            },
+            {
+              "name" => "rating",
+              "title" => "Rating",
+              "type" => "`$OBJECT`",
+            },
+            {
+              "name" => "remote_ids",
+              "title" => "Remote Ids",
+              "type" => "`$OBJECT`",
+            },
+            {
+              "name" => "season",
+              "title" => "Season",
+              "type" => "`$NUMBER`",
             },
             {
               "name" => "title",
               "title" => "Title",
               "type" => "`$STRING`",
-              "short" => "Title of the anime",
             },
             {
-              "name" => "url",
-              "title" => "Url",
-              "type" => "`$STRING`",
-              "short" => "URL to the anime details page",
-              "format" => "uri",
+              "name" => "top",
+              "title" => "Top",
+              "type" => "`$OBJECT`",
+            },
+            {
+              "name" => "type",
+              "title" => "Type",
+              "type" => "`$OBJECT`",
+            },
+            {
+              "name" => "views",
+              "title" => "Views",
+              "type" => "`$NUMBER`",
+            },
+            {
+              "name" => "year",
+              "title" => "Year",
+              "type" => "`$NUMBER`",
             },
           ],
-          "id" => {
-            "field" => "id",
-            "name" => "id",
-          },
           "name" => "anime",
           "op" => {
             "list" => {
@@ -155,13 +195,19 @@ module YummyanimeConfig
                   "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body.results`",
+                    "res" => "`body.response`",
                   },
                   "args" => {
                     "query" => [
                       {
-                        "name" => "query",
-                        "orig" => "query",
+                        "name" => "limit",
+                        "orig" => "limit",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "q",
+                        "orig" => "q",
                         "type" => "`$STRING`",
                         "kind" => "query",
                         "reqd" => true,
@@ -171,8 +217,12 @@ module YummyanimeConfig
                   },
                   "select" => {
                     "exist" => [
-                      "query",
+                      "q",
                     ],
+                  },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],

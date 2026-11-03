@@ -92,20 +92,30 @@ $anime = $client->Anime();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `string` | No | Description or synopsis of the anime |
-| `id` | `string` | No | Unique identifier for the anime |
-| `thumbnail` | `string` | No | URL to the anime thumbnail image |
-| `title` | `string` | No | Title of the anime |
-| `url` | `string` | No | URL to the anime details page |
+| `anime_id` | `int` | No |  |
+| `anime_status` | `array` | No |  |
+| `anime_url` | `string` | No |  |
+| `blocked_in` | `array` | No |  |
+| `description` | `string` | No |  |
+| `min_age` | `array` | No |  |
+| `poster` | `array` | No |  |
+| `rating` | `array` | No |  |
+| `remote_ids` | `array` | No |  |
+| `season` | `float` | No |  |
+| `title` | `string` | No |  |
+| `top` | `array` | No |  |
+| `type` | `array` | No |  |
+| `views` | `float` | No |  |
+| `year` | `float` | No |  |
 
 ### Operations
 
 #### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record, and throws on error.
 
 ```php
-$results = $client->Anime()->list();
+$results = $client->Anime()->list(["q" => "example"]);
 ```
 
 ### Common Methods
@@ -295,6 +305,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

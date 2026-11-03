@@ -12,5 +12,5 @@ var NewTestFeatureFunc func() Feature
 
 var NewTimeoutFeatureFunc func() Feature
 
-var NewAnimeEntityFunc func(client *YummyanimeSDK, entopts map[string]any) YummyanimeEntity
+var NewAnimeEntityFunc func(client *YummyanimeSDK, entopts map[string]any) YummyanimeEntityBase
 

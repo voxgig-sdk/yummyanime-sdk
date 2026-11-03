@@ -71,6 +71,7 @@ func MakeConfig() map[string]any {
 				},
 				"optspec": map[string]any{
 					"clearTimer": "`$FUNCTION`",
+					"now": "`$FUNCTION`",
 					"setTimer": "`$FUNCTION`",
 				},
 				"strict": false,
@@ -78,7 +79,7 @@ func MakeConfig() map[string]any {
 			},
 		},
 		"options": map[string]any{
-			"base": "https://yummyani.me",
+			"base": "https://api.yani.tv",
 			"headers": map[string]any{
 				"content-type": "application/json",
 			},
@@ -90,41 +91,80 @@ func MakeConfig() map[string]any {
 			"anime": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"name": "anime_id",
+						"title": "Anime Id",
+						"type": "`$INTEGER`",
+					},
+					map[string]any{
+						"name": "anime_status",
+						"title": "Anime Status",
+						"type": "`$OBJECT`",
+					},
+					map[string]any{
+						"name": "anime_url",
+						"title": "Anime Url",
+						"type": "`$STRING`",
+					},
+					map[string]any{
+						"name": "blocked_in",
+						"title": "Blocked In",
+						"type": "`$ARRAY`",
+					},
+					map[string]any{
 						"name": "description",
 						"title": "Description",
 						"type": "`$STRING`",
-						"short": "Description or synopsis of the anime",
 					},
 					map[string]any{
-						"name": "id",
-						"title": "Id",
-						"type": "`$STRING`",
-						"short": "Unique identifier for the anime",
+						"name": "min_age",
+						"title": "Min Age",
+						"type": "`$OBJECT`",
 					},
 					map[string]any{
-						"name": "thumbnail",
-						"title": "Thumbnail",
-						"type": "`$STRING`",
-						"short": "URL to the anime thumbnail image",
-						"format": "uri",
+						"name": "poster",
+						"title": "Poster",
+						"type": "`$OBJECT`",
+					},
+					map[string]any{
+						"name": "rating",
+						"title": "Rating",
+						"type": "`$OBJECT`",
+					},
+					map[string]any{
+						"name": "remote_ids",
+						"title": "Remote Ids",
+						"type": "`$OBJECT`",
+					},
+					map[string]any{
+						"name": "season",
+						"title": "Season",
+						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "title",
 						"title": "Title",
 						"type": "`$STRING`",
-						"short": "Title of the anime",
 					},
 					map[string]any{
-						"name": "url",
-						"title": "Url",
-						"type": "`$STRING`",
-						"short": "URL to the anime details page",
-						"format": "uri",
+						"name": "top",
+						"title": "Top",
+						"type": "`$OBJECT`",
 					},
-				},
-				"id": map[string]any{
-					"field": "id",
-					"name": "id",
+					map[string]any{
+						"name": "type",
+						"title": "Type",
+						"type": "`$OBJECT`",
+					},
+					map[string]any{
+						"name": "views",
+						"title": "Views",
+						"type": "`$NUMBER`",
+					},
+					map[string]any{
+						"name": "year",
+						"title": "Year",
+						"type": "`$NUMBER`",
+					},
 				},
 				"name": "anime",
 				"op": map[string]any{
@@ -147,13 +187,19 @@ func MakeConfig() map[string]any {
 								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body.results`",
+									"res": "`body.response`",
 								},
 								"args": map[string]any{
 									"query": []any{
 										map[string]any{
-											"name": "query",
-											"orig": "query",
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "q",
+											"orig": "q",
 											"type": "`$STRING`",
 											"kind": "query",
 											"reqd": true,
@@ -163,8 +209,12 @@ func MakeConfig() map[string]any {
 								},
 								"select": map[string]any{
 									"exist": []any{
-										"query",
+										"q",
 									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},

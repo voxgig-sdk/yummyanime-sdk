@@ -17,12 +17,26 @@ from typing import TypedDict, Any
 
 
 class Anime(TypedDict, total=False):
+    anime_id: int
+    anime_status: dict
+    anime_url: str
+    blocked_in: list
     description: str
-    id: str
-    thumbnail: str
+    min_age: dict
+    poster: dict
+    rating: dict
+    remote_ids: dict
+    season: float
     title: str
-    url: str
+    top: dict
+    type: dict
+    views: float
+    year: float
 
 
-class AnimeListMatch(TypedDict):
-    query: str
+class AnimeListMatchRequired(TypedDict):
+    q: str
+
+
+class AnimeListMatch(AnimeListMatchRequired, total=False):
+    limit: int

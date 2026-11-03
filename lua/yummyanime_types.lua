@@ -7,14 +7,25 @@
 -- edit by hand.
 
 ---@class Anime
+---@field anime_id? number
+---@field anime_status? table
+---@field anime_url? string
+---@field blocked_in? table
 ---@field description? string
----@field id? string
----@field thumbnail? string
+---@field min_age? table
+---@field poster? table
+---@field rating? table
+---@field remote_ids? table
+---@field season? number
 ---@field title? string
----@field url? string
+---@field top? table
+---@field type? table
+---@field views? number
+---@field year? number
 
 ---@class AnimeListMatch
----@field query string
+---@field limit? number
+---@field q string
 
 local M = {}
 

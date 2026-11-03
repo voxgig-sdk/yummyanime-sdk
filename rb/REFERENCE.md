@@ -93,20 +93,31 @@ anime = client.Anime
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `String` | No | Description or synopsis of the anime |
-| `id` | `String` | No | Unique identifier for the anime |
-| `thumbnail` | `String` | No | URL to the anime thumbnail image |
-| `title` | `String` | No | Title of the anime |
-| `url` | `String` | No | URL to the anime details page |
+| `anime_id` | `Integer` | No |  |
+| `anime_status` | `Hash` | No |  |
+| `anime_url` | `String` | No |  |
+| `blocked_in` | `Array` | No |  |
+| `description` | `String` | No |  |
+| `min_age` | `Hash` | No |  |
+| `poster` | `Hash` | No |  |
+| `rating` | `Hash` | No |  |
+| `remote_ids` | `Hash` | No |  |
+| `season` | `Float` | No |  |
+| `title` | `String` | No |  |
+| `top` | `Hash` | No |  |
+| `type` | `Hash` | No |  |
+| `views` | `Float` | No |  |
+| `year` | `Float` | No |  |
 
 ### Operations
 
 #### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record; `data_get` reads each record. Raises on error.
 
 ```ruby
-results = client.Anime.list
+results = client.Anime.list({ "q" => "example" })
+results.each { |item| puts item.data_get }
 ```
 
 ### Common Methods
@@ -296,6 +307,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

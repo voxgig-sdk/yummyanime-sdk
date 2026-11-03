@@ -15,7 +15,7 @@ keeps the cognitive load low.
 
 ## Install
 This package is not yet published to PyPI. Install it from the GitHub
-release tag (`py/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/yummyanime-sdk/releases)) or
+release tag (`py/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/yummyanime-sdk/tags)) or
 from a source checkout:
 
 ```bash
@@ -38,14 +38,14 @@ client = YummyanimeSDK()
 
 ### 2. List anime records
 
-`list()` returns a `list` of records (each a `dict`) and raises on
-error — iterate it directly.
+`list()` returns a `list` of entities, one per record, and raises on
+error; an entity's `data_get()` reads its record (a `dict`).
 
 ```python
 try:
-    animes = client.Anime().list({"query": "example"})
+    animes = client.Anime().list({"q": "example"})
     for anime in animes:
-        print(anime)
+        print(anime.data_get())
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -57,8 +57,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    animes = client.Anime().list()
-    print(animes)
+    animes = client.Anime().list({"q": "example"})
+    print([item.data_get() for item in animes])
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -124,10 +124,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = YummyanimeSDK.test()
 
-# Entity ops return the ENTITY and raises on error;
-# call data_get() for the record.
-anime = client.Anime().list()
-# anime contains the mock response record
+# Entity ops return the entity, and list one per record; they raise on error.
+anime = client.Anime().list({"q": "example"})
+# data_get() on an entity reads its mock response record
 ```
 
 ### Use a custom fetch function
@@ -211,7 +210,7 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
+| `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria, one per record. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -221,9 +220,9 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
-ops, a `list` for `list`) and raise on error. Wrap calls in
-`try`/`except` to handle failures.
+Entity operations return the entity, and `list` a `list` of entities, one
+per record; an entity's `data_get()` reads its record (a `dict`). They raise
+on error, so wrap calls in `try`/`except` to handle failures.
 
 The `direct()` escape hatch never raises — it returns a result `dict`
 you branch on via `result["ok"]`:
@@ -243,11 +242,21 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `description` | Description or synopsis of the anime |
-| `id` | Unique identifier for the anime |
-| `thumbnail` | URL to the anime thumbnail image |
-| `title` | Title of the anime |
-| `url` | URL to the anime details page |
+| `anime_id` |  |
+| `anime_status` |  |
+| `anime_url` |  |
+| `blocked_in` |  |
+| `description` |  |
+| `min_age` |  |
+| `poster` |  |
+| `rating` |  |
+| `remote_ids` |  |
+| `season` |  |
+| `title` |  |
+| `top` |  |
+| `type` |  |
+| `views` |  |
+| `year` |  |
 
 Operations: List.
 
@@ -272,16 +281,26 @@ Create an instance: `anime = client.Anime()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `str` | Description or synopsis of the anime |
-| `id` | `str` | Unique identifier for the anime |
-| `thumbnail` | `str` | URL to the anime thumbnail image |
-| `title` | `str` | Title of the anime |
-| `url` | `str` | URL to the anime details page |
+| `anime_id` | `int` |  |
+| `anime_status` | `dict` |  |
+| `anime_url` | `str` |  |
+| `blocked_in` | `list` |  |
+| `description` | `str` |  |
+| `min_age` | `dict` |  |
+| `poster` | `dict` |  |
+| `rating` | `dict` |  |
+| `remote_ids` | `dict` |  |
+| `season` | `float` |  |
+| `title` | `str` |  |
+| `top` | `dict` |  |
+| `type` | `dict` |  |
+| `views` | `float` |  |
+| `year` | `float` |  |
 
 #### Example: List
 
 ```python
-animes = client.Anime().list({"query": "example"})
+animes = client.Anime().list({"q": "example"})
 ```
 
 ## Features
@@ -446,7 +465,7 @@ stores the returned data and match criteria internally.
 
 ```python
 anime = client.Anime()
-anime.list()
+anime.list({"q": "example"})
 
 # anime.data_get() now returns the anime data from the last list
 # anime.match_get() returns the last match criteria

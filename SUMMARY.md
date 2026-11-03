@@ -1,6 +1,6 @@
 # YummyAnime API
 
-The YummyAnime API is a JavaScript library designed for accessing and interacting with the yummyani.me platform. It allows developers to search for anime content and retrieve detailed information about various anime titles.
+The YummyAnime API is a JavaScript library designed for accessing and interacting with the yummyani.me platform. It allows developers to search for anime content and retrieve detailed information about various anime titles. 2026-11-03: the API is https://api.yani.tv (yummyani.me/search answers the site 404); search takes q (query answers 400) and answers &#123;response: [&#123;`anime_id`, title, ...&#125;]&#125;; schema from a live probe.
 
 ## Start here
 
@@ -18,14 +18,6 @@ Results: Successful search response containing anime results.
 
 SDK operations: `list`.
 
-Key fields to recognise:
-
-- `description`: Description or synopsis of the anime
-- `id`: Unique identifier for the anime
-- `thumbnail`: URL to the anime thumbnail image
-- `title`: Title of the anime
-- `url`: URL to the anime details page
-
 ### Route map
 
 Use this map to locate a capability. Consult the entity reference before supplying request data; routes for the same operation can require different fields.
@@ -36,7 +28,7 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 
 ## Connect to the API
 
-- YummyAnime Platform: `https://yummyani.me`
+- YummyAnime API: `https://api.yani.tv`
 
 Check authentication for the route you plan to call. A route that declares no authentication can be used without credentials; this does not change the requirements of other routes. Keep credentials in environment variables or a configured secret provider, and keep them out of source control and logs.
 

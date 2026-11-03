@@ -16,25 +16,50 @@ const PLAN = [
         "path": "/search",
         "args": [],
         "select": {
-            "query": "blue"
+            "q": "blue",
+            "limit": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
-            "query"
+            "q",
+            "limit"
+        ],
+        "queryArgs": [
+            {
+                "name": "limit",
+                "wire": "limit"
+            },
+            {
+                "name": "q",
+                "wire": "q"
+            }
         ],
         "auth": null,
         "status": 200,
         "sample": {
-            "results": [
+            "response": [
                 {
                     "description": "x",
-                    "id": "x",
-                    "thumbnail": "x",
+                    "poster": {},
                     "title": "x",
-                    "url": "x"
+                    "anime_url": "x",
+                    "anime_id": 1,
+                    "rating": {},
+                    "year": 1,
+                    "min_age": {},
+                    "views": 1,
+                    "season": 1,
+                    "anime_status": {},
+                    "type": {},
+                    "remote_ids": {},
+                    "top": {},
+                    "blocked_in": []
                 }
-            ],
-            "total": 1
+            ]
         },
         "idField": "id"
     }

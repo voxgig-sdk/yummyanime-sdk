@@ -5,48 +5,96 @@ main: kit: entity: anime: {
   alias: field: {}
 
   fields: {
+    anime_id: {
+      h: "Anime Id"
+      n: "anime_id"
+      r: false
+      t: "`$INTEGER`"
+    }
+    anime_status: {
+      h: "Anime Status"
+      n: "anime_status"
+      r: false
+      t: "`$OBJECT`"
+    }
+    anime_url: {
+      h: "Anime Url"
+      n: "anime_url"
+      r: false
+      t: "`$STRING`"
+    }
+    blocked_in: {
+      h: "Blocked In"
+      n: "blocked_in"
+      r: false
+      t: "`$ARRAY`"
+    }
     description: {
       h: "Description"
       n: "description"
       r: false
-      sh: "Description or synopsis of the anime"
       t: "`$STRING`"
     }
-    id: {
-      h: "Id"
-      n: "id"
+    min_age: {
+      h: "Min Age"
+      n: "min_age"
       r: false
-      sh: "Unique identifier for the anime"
-      t: "`$STRING`"
+      t: "`$OBJECT`"
     }
-    thumbnail: {
-      fo: "uri"
-      h: "Thumbnail"
-      n: "thumbnail"
+    poster: {
+      h: "Poster"
+      n: "poster"
       r: false
-      sh: "URL to the anime thumbnail image"
-      t: "`$STRING`"
+      t: "`$OBJECT`"
+    }
+    rating: {
+      h: "Rating"
+      n: "rating"
+      r: false
+      t: "`$OBJECT`"
+    }
+    remote_ids: {
+      h: "Remote Ids"
+      n: "remote_ids"
+      r: false
+      t: "`$OBJECT`"
+    }
+    season: {
+      h: "Season"
+      n: "season"
+      r: false
+      t: "`$NUMBER`"
     }
     title: {
       h: "Title"
       n: "title"
       r: false
-      sh: "Title of the anime"
       t: "`$STRING`"
     }
-    url: {
-      fo: "uri"
-      h: "Url"
-      n: "url"
+    top: {
+      h: "Top"
+      n: "top"
       r: false
-      sh: "URL to the anime details page"
-      t: "`$STRING`"
+      t: "`$OBJECT`"
     }
-  }
-
-  id: {
-    field: "id"
-    name: "id"
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      t: "`$OBJECT`"
+    }
+    views: {
+      h: "Views"
+      n: "views"
+      r: false
+      t: "`$NUMBER`"
+    }
+    year: {
+      h: "Year"
+      n: "year"
+      r: false
+      t: "`$NUMBER`"
+    }
   }
 
   name: "anime"
@@ -63,10 +111,17 @@ main: kit: entity: anime: {
           g: {
             query: [
               {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
                 ex: "blue"
                 k: "query"
-                n: "query"
-                or: "query"
+                n: "q"
+                or: "q"
                 r: true
                 t: "`$STRING`"
               }
@@ -76,8 +131,12 @@ main: kit: entity: anime: {
           o: "/search"
           q: {
             exist: [
-              "query"
+              "q"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -86,7 +145,7 @@ main: kit: entity: anime: {
           ]
           t: {
             req: "`reqdata`"
-            res: "`body.results`"
+            res: "`body.response`"
           }
         }
       ]

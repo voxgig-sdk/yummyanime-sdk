@@ -90,20 +90,30 @@ local anime = client:Anime(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `string` | No | Description or synopsis of the anime |
-| `id` | `string` | No | Unique identifier for the anime |
-| `thumbnail` | `string` | No | URL to the anime thumbnail image |
-| `title` | `string` | No | Title of the anime |
-| `url` | `string` | No | URL to the anime details page |
+| `anime_id` | `number` | No |  |
+| `anime_status` | `table` | No |  |
+| `anime_url` | `string` | No |  |
+| `blocked_in` | `table` | No |  |
+| `description` | `string` | No |  |
+| `min_age` | `table` | No |  |
+| `poster` | `table` | No |  |
+| `rating` | `table` | No |  |
+| `remote_ids` | `table` | No |  |
+| `season` | `number` | No |  |
+| `title` | `string` | No |  |
+| `top` | `table` | No |  |
+| `type` | `table` | No |  |
+| `views` | `number` | No |  |
+| `year` | `number` | No |  |
 
 ### Operations
 
 #### `list(reqmatch, ctrl) -> any, err`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array of entities, one per record, or `nil` and an error on failure.
 
 ```lua
-local results, err = client:Anime():list()
+local results, err = client:Anime():list({ q = "example" })
 ```
 
 ### Common Methods
@@ -293,6 +303,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

@@ -15,7 +15,7 @@ predictable and low-friction for both humans and AI agents.
 
 ## Install
 This package is not yet published to npm. Install it from the GitHub
-release tag (`ts/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/yummyanime-sdk/releases)), or from a
+release tag (`ts/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/yummyanime-sdk/tags)), or from a
 clone, which carries the compiled `dist/`:
 
 ```bash
@@ -44,10 +44,10 @@ resolves to entities, not raw records. Iterate them directly, and call
 `.data()` on one for the record it holds:
 
 ```ts
-const animes = await client.Anime().list({ query: "example" })
+const animes = await client.Anime().list({ q: "example" })
 
 for (const anime of animes) {
-  console.log(anime)
+  console.log(anime.data())
 }
 ```
 
@@ -58,15 +58,16 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const animes = await client.Anime().list()
-  console.log(animes)
+  const animes = await client.Anime().list({ q: "example" })
+  console.log(animes.map((item) => item.data()))
 } catch (err) {
   console.error('list failed:', err)
 }
 ```
 
 The low-level `direct()` method does **not** throw — it returns the
-value or an `Error`, so check the result before using it:
+result envelope. Branch on `ok`; on failure `status` holds the HTTP status
+(for error responses) and `err` holds the error:
 
 ```ts
 const result = await client.direct({
@@ -75,8 +76,8 @@ const result = await client.direct({
   params: { id: 'example_id' },
 })
 
-if (result instanceof Error) {
-  throw result
+if (!result.ok) {
+  console.error('request failed:', result.status, result.err)
 }
 ```
 
@@ -94,9 +95,6 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
-if (result instanceof Error) {
-  throw result
-}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -125,10 +123,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = YummyanimeSDK.test()
 
-const anime = await client.Anime().list()
-// anime is the entity, populated with mock response data
-// — call anime.data() for the record itself
-console.log(anime)
+const animes = await client.Anime().list({ q: 'example_q' })
+// animes is an array of Anime entities, one per mock record
+console.log(animes.map((anime) => anime.data()))
 ```
 
 You can also use the instance method:
@@ -146,11 +143,11 @@ Entity instances remember their last match and data:
 const entity = client.Anime()
 
 // First call runs the operation and stores its result
-await entity.list()
+await entity.list({ q: 'example_q' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data.id)
+console.log(data)
 ```
 
 ### Add custom middleware
@@ -243,7 +240,7 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria, one per record. |
 | `data` | `data(data?: Partial<Entity>): Entity` | Get or set entity data. |
 | `match` | `match(match?: Partial<Entity>): Partial<Entity>` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
@@ -252,8 +249,8 @@ All entities share the same interface.
 
 #### Return values
 
-Entity operations resolve to the entity data directly — there is no
-result envelope:
+Entity operations resolve to the entity itself — there is no result
+envelope, and an entity's `data()` reads its record:
 
 - `list` resolves to an **array** of entity objects (iterate it directly;
   there is no `.data` and no `.ok`).
@@ -296,11 +293,21 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `description` | Description or synopsis of the anime |
-| `id` | Unique identifier for the anime |
-| `thumbnail` | URL to the anime thumbnail image |
-| `title` | Title of the anime |
-| `url` | URL to the anime details page |
+| `anime_id` |  |
+| `anime_status` |  |
+| `anime_url` |  |
+| `blocked_in` |  |
+| `description` |  |
+| `min_age` |  |
+| `poster` |  |
+| `rating` |  |
+| `remote_ids` |  |
+| `season` |  |
+| `title` |  |
+| `top` |  |
+| `type` |  |
+| `views` |  |
+| `year` |  |
 
 Operations: list.
 
@@ -325,16 +332,26 @@ Create an instance: `const anime = client.Anime()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `string` | Description or synopsis of the anime |
-| `id` | `string` | Unique identifier for the anime |
-| `thumbnail` | `string` | URL to the anime thumbnail image |
-| `title` | `string` | Title of the anime |
-| `url` | `string` | URL to the anime details page |
+| `anime_id` | `number` |  |
+| `anime_status` | `Record<string, any>` |  |
+| `anime_url` | `string` |  |
+| `blocked_in` | `any[]` |  |
+| `description` | `string` |  |
+| `min_age` | `Record<string, any>` |  |
+| `poster` | `Record<string, any>` |  |
+| `rating` | `Record<string, any>` |  |
+| `remote_ids` | `Record<string, any>` |  |
+| `season` | `number` |  |
+| `title` | `string` |  |
+| `top` | `Record<string, any>` |  |
+| `type` | `Record<string, any>` |  |
+| `views` | `number` |  |
+| `year` | `number` |  |
 
 #### Example: List
 
 ```ts
-const animes = await client.Anime().list({ query: "example" })
+const animes = await client.Anime().list({ q: "example" })
 ```
 
 ## Features
@@ -492,7 +509,7 @@ calls on the same instance can rely on this state.
 
 ```ts
 const anime = client.Anime()
-await anime.list()
+await anime.list({ q: "example" })
 
 // anime.data() now returns the anime data from the last `list`
 // anime.match() returns the last match criteria

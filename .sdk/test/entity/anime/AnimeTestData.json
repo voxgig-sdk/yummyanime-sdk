@@ -2,35 +2,76 @@
   "existing": {
     "anime": {
       "ANIME00": {
-        "description": "s32",
-        "id": "ANIME00",
-        "thumbnail": "s34",
-        "title": "s35",
-        "url": "s36"
+        "anime_id": "ANIME01",
+        "anime_status": {},
+        "anime_url": "s98",
+        "blocked_in": [],
+        "description": "s9a",
+        "min_age": {},
+        "poster": {},
+        "rating": {},
+        "remote_ids": {},
+        "season": 159,
+        "title": "sa0",
+        "top": {},
+        "type": {},
+        "views": 163,
+        "year": 164
       },
       "ANIME01": {
-        "description": "s64",
-        "id": "ANIME01",
-        "thumbnail": "s66",
-        "title": "s67",
-        "url": "s68"
+        "anime_id": "ANIME01",
+        "anime_status": {},
+        "anime_url": "s12e",
+        "blocked_in": [],
+        "description": "s130",
+        "min_age": {},
+        "poster": {},
+        "rating": {},
+        "remote_ids": {},
+        "season": 309,
+        "title": "s136",
+        "top": {},
+        "type": {},
+        "views": 313,
+        "year": 314
       },
       "ANIME02": {
-        "description": "s96",
-        "id": "ANIME02",
-        "thumbnail": "s98",
-        "title": "s99",
-        "url": "s9a"
+        "anime_id": "ANIME01",
+        "anime_status": {},
+        "anime_url": "s1c4",
+        "blocked_in": [],
+        "description": "s1c6",
+        "min_age": {},
+        "poster": {},
+        "rating": {},
+        "remote_ids": {},
+        "season": 459,
+        "title": "s1cc",
+        "top": {},
+        "type": {},
+        "views": 463,
+        "year": 464
       }
     }
   },
   "new": {
     "anime": {
       "anime_ref01": {
-        "description": "sc8",
-        "thumbnail": "sca",
-        "title": "scb",
-        "url": "scc"
+        "anime_id": "ANIME01",
+        "anime_status": {},
+        "anime_url": "s25a",
+        "blocked_in": [],
+        "description": "s25c",
+        "min_age": {},
+        "poster": {},
+        "rating": {},
+        "remote_ids": {},
+        "season": 609,
+        "title": "s262",
+        "top": {},
+        "type": {},
+        "views": 613,
+        "year": 614
       }
     }
   },
